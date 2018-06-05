@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 18:19:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 12:17:17 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/05 16:11:08 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/includes/libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstaddone(int nb, t_list *start, t_list *current)
+void	solver(t_list *a)
 {
-	t_list	*new;
+	t_list	**global;
+	t_list	*b;
 
-	new = ft_lstnew(nb);
-	current->next = new;
-	new->prev = current;
-	new->next = start;
-	return (new);
+	if (!(global = (t_list**)malloc(sizeof(t_list*) * 2)))
+		return ;
+	global[0] = a;
+	global[1] = NULL;
+	global = push_b(global);
+	ft_printf("nb1 == %d\n", global[1]->nb);
+	ft_printf("after nb1 == %d\n", global[0]->nb);
 }

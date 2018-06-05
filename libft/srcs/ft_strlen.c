@@ -5,21 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 11:22:24 by oespion           #+#    #+#             */
-/*   Updated: 2018/04/04 12:11:06 by oespion          ###   ########.fr       */
+/*   Created: 2018/05/20 10:26:09 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/05 10:16:42 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
-	size_t		count;
-	const char	*cpy;
+	char	*tmp;
 
-	cpy = str;
-	count = 0;
-	while (*cpy++)
-		count++;
-	return (count);
+	tmp = str;
+	while (*tmp)
+		tmp++;
+	return (tmp - str);
 }

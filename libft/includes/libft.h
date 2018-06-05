@@ -1,105 +1,136 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libft.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 12:15:47 by oespion           #+#    #+#             */
-/*   Updated: 2018/05/03 15:25:30 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/03 13:18:06 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/05 10:29:08 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
 # define BUFF_SIZE 10
+# include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
 # include <limits.h>
+# include <stdarg.h>
+# include <stdio.h>
 
-typedef struct	s_list
+typedef struct  s_struct
 {
-	void			*content;
-	size_t			content_size;
+    char        *str;
+}               t_struct;
+
+typedef struct	s_printf
+{
+	va_list			ap;
+	void			*str;
+	char			*base_str;
+	int				brett;
+	int				increment;
+	int				nbout;
+	int				precision;
+	int				width;
+	int				negative;
+	int				positive;
+	int				zeros;
+	int				blank;
+	int				neg;
+	int				sharp;
+	int				nopesign;
+	int				hexa;
+	int				h;
+	int				hh;
+	int				l;
+	int				ll;
+	int				j;
+	int				z;
+}				t_printf;
+
+typedef	struct	s_list
+{
+	int				nb;
+	struct s_list	*prev;
 	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_struct
-{
-	char		*str;
-}				t_struct;
 
+
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_strnew(size_t size);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+char	*ft_strfjoin(char *s1, char *s2);
+int		get_next_line(const int fd, char **line);
+
+/*
+**				LISTES
+*/
+
+t_list	**ft_insert_one(t_list **global, int lst_nb, int nb);
+t_list	*ft_lstnew(int nb);
+t_list	*ft_lstaddone(int nb, t_list *start, t_list *current);
+void	ft_lstdelone(t_list *new);
+
+/*
+**				FT_PRINTF
+*/
+
+int				ft_printf(const char *format, ...);
+char			*ft_convert_base(uintmax_t nb, int base);
+int				longlong_len(intmax_t nb);
+const char		*end_of_int(const char *str);
+int				uintmax_t_len(uintmax_t nb);
+int				ft_strlen(char *str);
 void			ft_putchar(char c);
-int				ft_atoi(const char *str);
 void			ft_putstr(char *str);
-int				ft_strcmp(const char *s1, const char *s2);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			*ft_strdup(const char *src);
-size_t			ft_strlen(const char *str);
-char			*ft_strcpy(char *dest, const char *src);
-char			*ft_strncpy(char *dest, const char *src, size_t n);
-int				ft_isalpha(int c);
-void			*ft_memchr(const void *s, int c, size_t n);
-void			*ft_memmove(void *dest, const void *src, size_t n);
-int				ft_memcmp(const void *s1, const void *s2, size_t n);
-void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
-void			*ft_memcpy(void *dst, const void *src, size_t n);
-int				ft_isdigit(int c);
-int				ft_isalnum(int c);
-void			ft_bzero(void *s, size_t n);
-void			*ft_memmove(void *dest, const void *src, size_t n);
-void			ft_memdel(void **ap);
-void			*ft_memalloc(size_t size);
-int				ft_isascii(int c);
-char			*ft_strnstr(const char *big, const char *little, size_t len);
-int				ft_isprint(int c);
-void			*ft_memset(void *b, int c, size_t len);
-char			**ft_strsplit(char const *s, char c);
-int				ft_toupper(int c);
-char			*ft_strstr(const char *big, const char *little);
-int				ft_tolower(int c);
-void			ft_putnbr(int nb);
-void			ft_putstr_fd(char const *s, int fd);
-void			ft_putchar_fd(char c, int fd);
-char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strfjoin(char const *s1, char const *s2);
-void			ft_putnbr_fd(int n, int fd);
-void			ft_putendl(char const *s);
-void			ft_putendl_fd(char const *s, int fd);
-char			*ft_strcat(char *dest, const char *src);
-char			*ft_strncat(char *dest, const char *src, size_t n);
-char			*ft_strchr(const char *s, int c);
-char			*ft_strrchr(const char *s, int c);
-size_t			ft_strlcat(char *dst, const char *src, size_t size);
-char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
-void			ft_strclr(char *s);
-int				ft_strequ(char const *s1, char const *s2);
-int				ft_strnequ(char const *s1, char const *s2, size_t n);
-void			ft_striter(char *s, void (*f)(char *));
-void			ft_striteri(char *s, void (*f)(unsigned int, char *));
-char			*ft_strmap(char const *s, char (*f)(char));
-char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char			*ft_strsub(char const *s, unsigned int start, size_t len);
-char			*ft_strtrim(char const *s);
-char			*ft_itoa(int n);
-t_list			*ft_lstnew(void const *content, size_t content_size);
-void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void			ft_lstadd(t_list **alst, t_list *new);
-void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-void			ft_sort_int(int *lst, size_t len);
-int				ft_power(int n, int power);
-int				ft_abs(int nb);
-int				ft_is_lowercase(char *str);
-int				ft_is_uppercase(char *str);
-void			ft_free_tab(char **tab);
-int				get_next_line(const int fd, char **line);
+int				ft_atoi(const char *str);
+void			printchar(t_printf *p, char letter);
+void			ft_putcharnf(t_printf *p, char letter);
+void			ft_putcharn(t_printf *p, char c);
+void			ft_putnbr(intmax_t nb);
+uintmax_t		ft_abs(long long nb);
+void			printunb(t_printf*p, int maj);
+void			printhexa(t_printf *p, int maj);
+char			*ft_toupper(char *str);
+void			printaddress(t_printf *p);
+intmax_t		getnb(t_printf *p, int maj);
+uintmax_t		getunb(t_printf *p, int maj);
+void			ft_putstrn_hexa(t_printf *p, char *str, int maj);
+void			printnb(t_printf *p, int maj);
+void			ft_putnbr_uintmax(uintmax_t nb);
+void			printoctal(t_printf *p, int maj);
+int				bin_to_dec(char *bin);
+char			*ft_strjoin(char *s1, char *s2);
+void			write_with_precision(char *str, t_printf *p);
+void			ft_putstrn(t_printf *p, char *str);
+t_printf		*create_struct(void);
+t_printf		*reset_struct(t_printf *p);
+void			ft_get_arg(char letter, t_printf *p);
+void			printunicode(t_printf *p);
+char			*ft_convert_binary(uintmax_t nb);
+void			ft_bzero(void *s, size_t n);
+char			*ft_strcat(char *dest, const char *src);
+void			ft_get_width(t_printf *p, uintmax_t nbr);
+void			ft_get_precision(uintmax_t nbr, t_printf *p);
+void			ft_pos(t_printf *p);
+void			width_write(int max, int width_tmp, char spaces, t_printf *p);
+void			printbinary(t_printf *p);
+void			ft_putstrn_octal(t_printf *p, char *str);
+int				checkunicode(t_printf *p);
+void			break_bin(char *binary, t_printf *p, int brett);
+void			print_uni_width(t_printf *p, int nlen);
+void			printlstring(t_printf *p);
+const char		*ft_precision(const char *format, t_printf *p);
+const char		*ft_width(const char *format, t_printf *p);
+const char		*ft_flags(const char *format, t_printf *p);
+int				single_len(t_printf *p, int nb);
+int				check_brett_tab(wchar_t *brett, t_printf *p);
 
 #endif

@@ -5,14 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 11:23:32 by oespion           #+#    #+#             */
-/*   Updated: 2018/04/09 10:25:20 by oespion          ###   ########.fr       */
+/*   Created: 2018/05/20 14:47:19 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/05 10:15:58 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+
+char	*ft_toupper(char *str)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	int	r;
+
+	r = 0;
+	while (str[r])
+	{
+		if (str[r] >= 'a' && str[r] <= 'z')
+			str[r] -= 32;
+		r++;
+	}
+	return (str);
 }

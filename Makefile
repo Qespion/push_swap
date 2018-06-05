@@ -3,21 +3,34 @@ FLAGS   =   -Wall -Wextra -Werror
 LIB_DIR =   libft/
 NAME1	=	checker
 NAME2	=	push_swap
-SRCS_1	=   checker.c
-SRCS_2	=	push_swap.c
+
+SRCS_1	=   srcs/checker.c
+
+SRCS_2	=	srcs/push_swap.c		\
+			srcs/solver.c			\
+			srcs/swap.c				\
+			srcs/rotate.c			\
+			srcs/push.c				\
+			srcs/reverse_rotate.c
+
+LIBFT	=	libft/libft.a
+
+C_GREEN	=	"\033[32m"
+C_BLUE	=	"\033[36m"
+C_BASE	=	"\033[00m"
 
 OBJS1    =   $(SRCS_1:.c=.o)
 OBJS2	=	$(SRCS_2:.c=.o)
 
-all:	$(CHECKER) $(PUSH_SWAP)
+all:	lib checker push_swap
 
-$(LIB):
+lib:
 	make -C libft/
 
-$(CHECKER): $(OBJS1)
+checker: $(OBJS1)
 	$(CC) $(FLAGS) $(OBJS1) -L libft/ -lft -o $(NAME1)
 
-$(PUSH_SWAP): $(OBJS2)
+push_swap: $(OBJS2)
 	$(CC) $(FLAGS) $(OBJS2) -L libft/ -lft -o $(NAME2)
 
 %.o: %.c
@@ -29,9 +42,8 @@ clean:
 	rm -f $(OBJS1) $(OBJS2)
 
 fclean:     clean
-	make -C libft/ fclean
-	rm -f $(NAME1) $(NAME2)
+	rm -f $(NAME1) $(NAME2) $(LIBFT)
 
 re:         fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all checker push_swap clean fclean re

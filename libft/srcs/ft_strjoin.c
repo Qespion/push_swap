@@ -6,13 +6,13 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:24:03 by oespion           #+#    #+#             */
-/*   Updated: 2018/04/07 14:42:17 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/05 11:23:34 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		len;
