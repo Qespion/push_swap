@@ -11,7 +11,8 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/swap.c				\
 			srcs/rotate.c			\
 			srcs/push.c				\
-			srcs/reverse_rotate.c
+			srcs/reverse_rotate.c	\
+			srcs/check_list.c
 
 LIBFT	=	libft/libft.a
 

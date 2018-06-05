@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 13:50:56 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 16:07:18 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/05 18:47:41 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*ft_lstnew(int nb)
 	if (!(new->nb = (int)malloc(sizeof(int))))
 		return (NULL);
 	new->nb = nb;
+	new->content = 0;
 	new->prev = new;
 	new->next = new;
 	return (new);

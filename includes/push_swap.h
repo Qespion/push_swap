@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 15:30:33 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/05 18:47:13 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	solver(t_list *a);
 t_list	*create_a_from_str(char *str);
 t_list	*create_a(int ac, char **av);
-void	solver(t_list *a);
+int		check_both_list(t_list **gb);
 
 t_list	**swap_a(t_list **global);
 t_list	**swap_b(t_list **global);

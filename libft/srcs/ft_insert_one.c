@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:56:52 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 16:07:20 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/05 17:14:28 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_list	**ft_insert_one(t_list **global, int lst_nb, int nb)
 	before = global[lst_nb]->prev;
 	after = global[lst_nb];
 	before->next = new;
-	before->prev = new;
+	after->prev = new;
 	global[lst_nb] = new;
+	new->next = after;
+	new->prev = before;
 	return (global);
 }
