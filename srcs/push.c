@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:46:15 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 18:04:31 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/06 15:30:05 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ t_list	**push_b(t_list **global)
 {
 	int 	nb;
 	t_list	*tmp;
+	t_list	*todel;
 
 	if (global[0] == NULL)
 		return (global);
+	todel = global[0];
 	nb = global[0]->nb;
 	tmp = global[0]->next;
 	ft_lstdelone(global[0]);

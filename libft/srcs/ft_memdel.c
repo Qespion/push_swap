@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 13:50:56 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/06 11:50:47 by oespion          ###   ########.fr       */
+/*   Created: 2018/04/04 11:20:42 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/06 11:30:45 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(int nb)
+void	ft_memdel(void **ap)
 {
-	t_list	*new;
-
-	if (!(new = (t_list*)malloc(sizeof(t_list))))
-		return (NULL);
-	if (!(new->nb = (int)malloc(sizeof(int))))
-		return (NULL);
-	new->nb = nb;
-	new->prev = new;
-	new->next = new;
-	return (new);
+	if (ap)
+	{
+		if (*ap == NULL)
+			return ;
+		if (*ap != NULL)
+			free(*ap);
+		*ap = NULL;
+	}
 }

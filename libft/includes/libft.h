@@ -56,7 +56,6 @@ typedef struct	s_printf
 typedef	struct	s_list
 {
 	int				nb;
-	int				content;
 	struct s_list	*prev;
 	struct s_list	*next;
 }				t_list;
@@ -68,7 +67,7 @@ char	*ft_strnew(size_t size);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 char	*ft_strfjoin(char *s1, char *s2);
 int		get_next_line(const int fd, char **line);
-
+void	ft_memdel(void **ap);
 /*
 **				LISTES
 */

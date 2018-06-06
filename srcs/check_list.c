@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 18:05:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 19:27:17 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/06 15:31:56 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,15 @@
 
 int	check_single(t_list *a)
 {
-	a->content = 1;
+	t_list	*tmp;
+
+	tmp = a;
 	if (a->nb <= a->next->nb)
 		a = a->next;
-	while (!a->next->content && (a->nb <= a->next->nb))
-	{
+	while (a->next != tmp && (a->nb <= a->next->nb))
 		a = a->next;
-	}
-	if (a->next->content)
-	{
-		a->next->content = 0;
+	if (a->next == tmp)
 		return(0);
-	}
-	while (!a->content)
-		a = a->next;
-	a->content = 0;
 	return (1);
 }
 
