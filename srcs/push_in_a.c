@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   push_in_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 17:08:49 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/07 11:34:13 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/07 17:13:26 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/07 17:13:47 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/includes/libft.h"
+#include "push_swap.h"
 
-void	ft_lstdelone(t_list *new)
-{
-	new->prev->next = new->next;
-	new->next->prev = new->prev;
-	new->next = NULL;
-	new->prev = NULL;
-	free(&new->nb);
-}
+t_list	**push_in_a()

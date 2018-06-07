@@ -1,52 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_list.c                                       :+:      :+:    :+:   */
+/*   push_back_in_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 18:05:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/07 14:22:40 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/07 17:13:26 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/07 17:43:58 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
-int	check_single(t_list *a)
+t_list	**push_back_in_a(t_list **g)
 {
-	t_list	*tmp;
+	t_list	*start_a;
+	t_list	*current_a;
+	int		count1;
+	int		count2;
 
-	tmp = a;
-	if (a->nb <= a->next->nb)
-		a = a->next;
-	while (a->next != tmp && (a->nb <= a->next->nb))
-		a = a->next;
-	if (a->next == tmp)
-		return(0);
-	return (1);
-}
-
-/*
-**	if both ok -> 2
-**	if only a is ok -> 1
-**	if only b is ok -> 0
-**	if noone -> -1
-*/
-
-int	check_both_list(t_list **gb)
-{
-	int	r;
-
-	r = 2;
-	if (check_single(gb[0]))
-		r = 0;
-	if (check_single(gb[1]))
+	current_a = g[0];
+	start_a = g[0];
+	/*while (g[1] != NULL)
 	{
-		if (r == 0)
-			r = -1;
+		count1 = 0;
+		count2 = 0;
+		if (g[1]->nb <= g[0]->nb && (g[0] == start_a || g[1]->nb >= g[0]->prev->nb))
+		{
+			ft_printf("pa\n");
+			g = push_a(g);
+		}
 		else
-			r = 1;
-	}
-	return (r);
+			ft_printf("ra\n");
+			g = rotate_a(g);
+	}*/
 }

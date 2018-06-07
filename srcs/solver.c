@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/06 15:44:12 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/07 17:20:50 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list	**fill_h_in_b(t_list **global)
 		global[0] = global[0]->next;
 		len++;
 	}
-	while (r < len / 2)
+	while (r <= len / 2)
 	{
 		global = push_b(global);
 		ft_printf("pb\n");
@@ -61,39 +61,34 @@ t_list	**swap_both(t_list **gb, t_list *start_a, t_list *start_b)
 
 /*
 ** --Swap basic to test the functions
-**	ONLY USE	-swap a		-rotate a	-reverse rotate a
+**	ONLY USE	-swap a		-rotate a
 */
 
-void	swap_teube(t_list **global, t_list *start_a)
+t_list	**swap_basic(t_list **global)
 {
-	int		r;
+	t_list	*debut_a;
+	int		tri;
 
-	r = 0;
-
-	ft_printf("CHECK = %d\n", check_both_list(global));
-/*	while (check_both_list(global))
+	tri = 1;
+	debut_a = global[0];
+	while (tri == 1)
 	{
-		if (global[0]->nb > global[0]->next->nb && global[0]->next != start_a)
+		tri = 0;
+		while (global[0]->next != debut_a)
 		{
-			global = swap_a(global);
-			ft_printf("sa\n");
+			if (global[0]->next->nb < global[0]->nb)
+			{
+				tri = 1;
+				ft_printf("sa\n");
+				global = swap_a(global);
+			}
+			ft_printf("ra\n");
+			global = rotate_a(global);
 		}
-		else
-			global[0] = global[0]->next;
-		while (r < 7)
-		{
-			ft_printf("nb[0] = %d\n", global[0]->nb);
-			global[0] = global[0]->next;
-			r++;
-		}
-		ft_printf("\n---\n");
-		while (r > 0)
-		{
-			ft_printf("nb[1] = %d\n", global[1]->nb);
-			global[1] = global[1]->next;
-			r--;
-		}
-	}*/
+		ft_printf("ra\n");
+		global = rotate_a(global);
+	}
+	return (global);
 }
 
 void	solver(t_list *a)
@@ -101,30 +96,15 @@ void	solver(t_list *a)
 	int		r;
 	t_list	**global;
 	t_list	*b;
-	t_list	*start_a;
-	t_list	*start_b;
 
 	r = 0;
 	if (!(global = (t_list**)malloc(sizeof(t_list*) * 2)))
 		return ;
 	global[0] = a;
 	global[1] = NULL;
-	global = fill_h_in_b(global);
-	start_a = global[0];
-	start_b = global[1];
-	swap_teube(global, start_a);
-	/*while (r < 7)
-	{
-		ft_printf("nb[0] = %d\n", global[0]->nb);
-		global[0] = global[0]->next;
-		r++;
-	}
-	ft_printf("\n---\n");
-	while (r > 0)
-	{
-		ft_printf("nb[1] = %d\n", global[1]->nb);
-		global[1] = global[1]->next;
-		r--;
-	}*/
-	ft_printf("after nb1 == %d\n", global[0]->nb);
+	global = push_in_b(global);
+	global = push_back_in_a(global);
+	//global = fill_h_in_b(global);
+	// global = swap_basic(global);
+	print_list(global);
 }
