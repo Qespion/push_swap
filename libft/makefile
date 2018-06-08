@@ -42,7 +42,8 @@ SRC         =     srcs/ft_printf.c	\
 				  srcs/ft_lstdelone.c	\
 				  srcs/ft_insert_one.c	\
 				  srcs/ft_memdel.c		\
-				  srcs/ft_lstdel.c
+				  srcs/ft_lstdel.c		\
+				  srcs/ft_putstr_fd.c
 
 
 C_GREEN	=	"\033[32m"

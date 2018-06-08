@@ -60,7 +60,7 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-
+void	ft_putstr_fd(char const *s, int fd);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strnew(size_t size);
 void	*ft_memmove(void *dest, const void *src, size_t n);
