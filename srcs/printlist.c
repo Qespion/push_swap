@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 11:16:16 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/07 13:23:50 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 11:14:27 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*
 **	debug file
-**	print both list
+** 	print both list
 */
 
 void	print_list(t_list **global)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/07 17:13:26 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/07 17:43:58 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/08 11:21:21 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	**push_back_in_a(t_list **g)
 
 	current_a = g[0];
 	start_a = g[0];
-	/*while (g[1] != NULL)
+	while (g[1] != NULL)
 	{
 		count1 = 0;
 		count2 = 0;
@@ -32,7 +32,10 @@ t_list	**push_back_in_a(t_list **g)
 			g = push_a(g);
 		}
 		else
+		{
 			ft_printf("ra\n");
 			g = rotate_a(g);
-	}*/
+		}
+	}
+	return (g);
 }

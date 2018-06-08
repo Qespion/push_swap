@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/07 17:40:15 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 11:08:39 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ int		check_list(t_list *start)
 	}
 	return (1);
 }
+
+/*
+** coucou
+** coucou Chef !
+*/
 
 t_list	**push_in_b(t_list **g)
 {
@@ -59,9 +64,12 @@ t_list	**push_in_b(t_list **g)
 		ft_printf("ra\n");
 		g = rotate_a(g);
 	}
-	ft_printf("ra\n");
-	g = rotate_a(g);
-	if (!check_list(g[0]))
+	while (g[0] != start_a)
+	{
+		ft_printf("ra\n");
+		g = rotate_a(g);
+	}
+	if (!check_list(start_a))
 		push_in_b(g);
 	return (g);
 }
