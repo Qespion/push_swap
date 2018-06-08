@@ -61,13 +61,13 @@ typedef	struct	s_list
 }				t_list;
 
 
-
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strnew(size_t size);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 char	*ft_strfjoin(char *s1, char *s2);
 int		get_next_line(const int fd, char **line);
 void	ft_memdel(void **ap);
+
 /*
 **				LISTES
 */
@@ -76,6 +76,7 @@ t_list	**ft_insert_one(t_list **global, int lst_nb, int nb);
 t_list	*ft_lstnew(int nb);
 t_list	*ft_lstaddone(int nb, t_list *start, t_list *current);
 void	ft_lstdelone(t_list *new);
+void	ft_lstdel(t_list *lst);
 
 /*
 **				FT_PRINTF

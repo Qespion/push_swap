@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 10:47:12 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 15:05:04 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 t_list	*find_lowest(t_list *lst);
+t_list	*find_biggest(t_list *lst);
+t_list	**rotate_to_lower(t_list **lst);
 
 void	print_list(t_list **global);
 void	solver(t_list *a);

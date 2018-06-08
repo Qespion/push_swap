@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 11:21:28 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 15:50:56 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void	solver(t_list *a)
 	global[1] = NULL;
 	global = push_in_b(global);
 	global = push_back_in_a(global);
-	//global = fill_h_in_b(global);
-	// global = swap_basic(global);
-	ft_printf("the lowest is -> %d\n", find_lowest(global[0])->nb);
+	global = rotate_to_lower(global);
 	print_list(global);
+	ft_lstdel(global[0]);
+	free(global);
 }

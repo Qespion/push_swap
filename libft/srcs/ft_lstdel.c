@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 17:08:49 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 15:43:34 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/08 15:12:32 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/08 15:48:22 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *new)
+void	ft_lstdel(t_list *lst)
 {
-	new->prev->next = new->next;
-	new->next->prev = new->prev;
-	new->next = NULL;
-	new->prev = NULL;
-	free(new);
+	t_list	*tmp;
+
+	lst->prev->next = NULL;
+	while (lst)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
 }

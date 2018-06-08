@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/07 14:23:45 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:20:14 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int		main(int ac, char **av)
 		return (1);
 	fd = open(av[1], 0);
 	if (get_next_line(fd, &str) == 1)
+	{
 		a = create_a_from_str(str);
+		ft_strdel(&str);
+	}
 	else
 		a = create_a(ac, av);
 	solver(a);

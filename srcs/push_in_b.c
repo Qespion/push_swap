@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 11:08:39 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 13:52:03 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,14 @@ int		check_list(t_list *start)
 	return (1);
 }
 
-/*
-** coucou
-** coucou Chef !
-*/
-
 t_list	**push_in_b(t_list **g)
 {
 	t_list	*start_a;
 
-	start_a = g[0];
+	start_a = find_lowest(g[0]);
 	while (g[0]->next != start_a)
 	{
-		if (g[0]->next->nb < g[0]->nb && g[0]->next->nb >= g[0]->prev->nb)
+		if (g[0]->next->nb < g[0]->nb && g[0]->next->nb >= g[0]->prev->nb && g[0] != start_a)
 		{
 			if (g[1])
 			{
@@ -52,24 +47,27 @@ t_list	**push_in_b(t_list **g)
 				swap_a(g);
 			}
 		}
-		else if (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)
+		if (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)
 		{
 			if (g[0] == start_a)
 				start_a = g[0]->next;
 			ft_printf("pb\n");
 			g = push_b(g);
 		}
-		//ft_printf("iteration \n");
-		//print_list(g);
-		ft_printf("ra\n");
-		g = rotate_a(g);
-	}
-	while (g[0] != start_a)
-	{
-		ft_printf("ra\n");
-		g = rotate_a(g);
+		// ft_printf("iteration \n");
+		// print_list(g);
+		if (!check_list(start_a))
+		{
+			ft_printf("ra\n");
+			g = rotate_a(g);
+		}
+		else
+			break ;
 	}
 	if (!check_list(start_a))
-		push_in_b(g);
+	{
+		g[0]->next == start_a ?	g[0] = g[0]->next : 0;
+		return (push_in_b(g));
+	}
 	return (g);
 }
