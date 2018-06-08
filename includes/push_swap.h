@@ -6,12 +6,16 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 15:05:04 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 19:09:46 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+/*
+**	push swap
+*/
 
 t_list	*find_lowest(t_list *lst);
 t_list	*find_biggest(t_list *lst);
@@ -24,6 +28,16 @@ t_list	*create_a(int ac, char **av);
 int		check_both_list(t_list **gb);
 t_list	**push_in_b(t_list **g);
 t_list	**push_back_in_a(t_list **g);
+
+/*
+**	checker
+*/
+
+int		create_list(t_list *a);
+
+/*
+**	mod functions
+*/
 
 t_list	**swap_a(t_list **global);
 t_list	**swap_b(t_list **global);

@@ -6,11 +6,12 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 17:50:03 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/08 19:09:42 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
+#include "push_swap.h"
 
 t_list	*create_a_from_str(char *str)
 {
@@ -70,5 +71,6 @@ int		main(int ac, char **av)
 	}
 	else
 		a = create_a(ac, av);
+	create_list(a);
 	return (0);
 }

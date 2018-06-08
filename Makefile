@@ -4,7 +4,8 @@ LIB_DIR =   libft/
 NAME1	=	checker
 NAME2	=	push_swap
 
-SRCS_1	=   srcs/checker.c
+SRCS_1	=   srcs/checker.c			\
+			srcs/checker_struct.c
 
 SRCS_2	=	srcs/push_swap.c		\
 			srcs/solver.c			\
