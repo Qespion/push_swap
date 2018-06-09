@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 19:09:46 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/09 15:15:55 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 /*
 **	push swap
 */
+
+int		better_in_reverse_rb(t_list **g, int base_count, t_list *biggest);
+int		better_in_rrr(t_list **g, int base_count, t_list *biggest);
+int		better_in_reverse_ra(t_list **g, int base_count, t_list *biggest);
 
 t_list	*find_lowest(t_list *lst);
 t_list	*find_biggest(t_list *lst);
@@ -32,8 +36,10 @@ t_list	**push_back_in_a(t_list **g);
 /*
 **	checker
 */
-
+void	print_a(t_list *a);
+int		create_list_malloc(t_list *a);
 int		create_list(t_list *a);
+t_list	**apply_checker(t_list **g, char *str);
 
 /*
 **	mod functions

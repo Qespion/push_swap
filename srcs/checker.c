@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/08 19:09:42 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/09 15:28:12 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int		main(int ac, char **av)
 	t_list	*a;
 	char	*str;
 	int		fd;
-	int		r;
 
-	r = 1;
 	if (ac < 2)
 		return (1);
 	fd = open(av[1], 0);
@@ -68,9 +66,12 @@ int		main(int ac, char **av)
 	{
 		a = create_a_from_str(str);
 		ft_strdel(&str);
+		create_list(a);
 	}
 	else
+	{
 		a = create_a(ac, av);
-	create_list(a);
+		create_list_malloc(a);
+	}
 	return (0);
 }

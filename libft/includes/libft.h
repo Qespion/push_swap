@@ -13,7 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 1
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -60,6 +60,7 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+int		ft_strcmp(char *s1, char *s2);
 void	ft_putstr_fd(char const *s, int fd);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strnew(size_t size);
