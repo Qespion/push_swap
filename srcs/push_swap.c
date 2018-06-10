@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 13:43:41 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/10 15:31:42 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		check_a(int ac, char **av)
 	{
 		while (r < ac)
 		{
+			if (av[r][i] == '-')
+				i++;
 			while (av[r][i])
 			{
 				if (av[r][i] < '0' || av[r][i] > '9')
@@ -64,8 +66,10 @@ int		checker_str(char *str)
 	r = 0;
 	while (str[r])
 	{
-		if (str[r] < '0' || str[r] > '9')
+		if ((str[r] < '0' || str[r] > '9') && str[r] != '-')
 			break ;
+		if (str[r] == '-')
+			r++;
 		while (str[r] >= '0' && str[r] <= '9')
 			r++;
 		if (str[r] == ' ')

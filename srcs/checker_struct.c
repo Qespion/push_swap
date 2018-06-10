@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 15:28:13 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/10 14:46:34 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,52 @@ int		create_list_malloc(t_list *a)
 		ft_strdel(&str);
 	}
 	ft_printf("OK\n");
-	print_a(global[0]);
+	//print_a(global[0]);
 	free(global);
 	return (0);
 }
 
-int		create_list(t_list *a)
+void	list_a_checker(t_list **g)
 {
-	t_list	*global[2];
-	char	*str;
-	int		r;
-	t_list	**g;
+	t_list	*start;
 
+	start = g[0];
+	//print_a(g[0]);
+	if (g[1] != NULL)
+	{
+		ft_printf("KO\n");
+		return ;
+	}
+	while (g[0]->next != start)
+	{
+		if (g[0]->nb > g[0]->next->nb)
+		{
+			ft_printf("KO\n");
+			return ;
+		}
+		g[0] = g[0]->next;
+	}
+	ft_printf("OK\n");
+}
+
+void	create_list(t_list *a)
+{
+	t_list	**g;
+	t_list	*start;
+	char	*str;
+
+	start = a;
+	str = NULL;
 	if (!(g = (t_list**)malloc(sizeof(t_list*) * 2)))
-		return (0);
-	r = 0;
-	global[0] = a;
-	global[1] = NULL;
-	g = global;
+		return ;
+	g[0] = a;
+	g[1] = NULL;
 	while (get_next_line(0, &str) == 1)
 	{
-		//g = apply_checker(g, str);
+		//ft_printf("%s\n", str);
+		g = apply_checker(g, str);
+		//print_list(g);
 		ft_strdel(&str);
 	}
-	print_a(g[0]);
-	ft_printf("OK\n");
-	//free(g);
-	return (0);
+	list_a_checker(g);
 }

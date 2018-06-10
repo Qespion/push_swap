@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 13:24:32 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/10 13:20:26 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ t_list	*find_lowest(t_list *lst)
 	adr = lst;
 	nb = lst->nb;
 	start = lst;
-	while (lst->next != start)
+	while (start->next != lst)
 	{
-		if (lst->nb < nb)
+		if (start->nb < nb)
 		{
-			nb = lst->nb;
-			adr = lst;
+			nb = start->nb;
+			adr = start;
 		}
-		lst = lst->next;
+		start = start->next;
 	}
 	return (adr);
 }

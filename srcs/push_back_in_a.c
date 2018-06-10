@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 13:43:48 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/10 15:36:13 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_list	**push_back_in_a(t_list **g)
 	start_a = find_lowest(g[0]);
 	while (g[1] != NULL)
 	{
-		//ft_printf("rotation = %d\n", basic_find(g, biggest));
+		// ft_printf("rotation = %d\n", basic_find(g, biggest));
 		biggest = find_biggest(g[0]);
 		if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
 		{
@@ -84,8 +84,7 @@ t_list	**push_back_in_a(t_list **g)
 		// else if (better_in_reverse_rb(g, basic_find(g, biggest), biggest))
 		// {
 		// 	reverse_rotate_a(g);
-		// 	ft_printf("rrb\n");
-		// 	print_list(g);
+			//ft_printf("rrb\n");
 		// }
 		else
 		{

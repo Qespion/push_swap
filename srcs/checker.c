@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 15:28:12 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/10 16:33:24 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,27 @@ int		main(int ac, char **av)
 	t_list	*a;
 	char	*str;
 	int		fd;
+	int		visu;
 
+	visu = 1;
+	!strcmp(av[1], "-v") ? visu = 2 : 0;
 	if (ac < 2)
 		return (1);
-	fd = open(av[1], 0);
+	fd = open(av[visu], 0);
+	if (visu == 2)
+	{
+		ft_printf("test\n");
+	}
 	if (get_next_line(fd, &str) == 1)
 	{
 		a = create_a_from_str(str);
-		ft_strdel(&str);
 		create_list(a);
+		ft_strdel(&str);
 	}
 	else
 	{
 		a = create_a(ac, av);
-		create_list_malloc(a);
+		create_list(a);
 	}
 	return (0);
 }
