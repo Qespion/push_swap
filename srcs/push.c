@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:46:15 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 15:29:11 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 16:24:23 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ t_list	**push_b(t_list **global)
 
 	if (global[0] == NULL)
 		return (global);
+	// print_list(global);
+	// ft_printf("global[0] %d\n", global[0]->nb);
 	todel = global[0];
 	nb = global[0]->nb;
 	tmp = global[0]->next;
 	if (global[0]->next == global[0])
 	{
-		free(global[1]);
+		free(global[0]);
 		global[0] = NULL;
 	}
 	else

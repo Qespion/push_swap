@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 15:36:13 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 20:28:37 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,43 @@ int		basic_find(t_list **g, t_list *biggest)
 }
 
 /*
-int		find_better_b(t_list **g, t_list *biggest)
+**	Faire un tab qui va stock le nb d'action du plus simple au plus complexe
+**	-with ra/rra
+**	-with rb/rrb
+**	-with a rb find is place with ra /rra
+** 	-with a ra blahblaj blha with rb /rrb
+**	*most fun* With rrr or rr and some ra/rb/rrb/rra *most FUN*
+**	find lowest
+**	do
+*/
+
+t_list	**find_other_opt(t_list **g, t_list *biggest)
 {
-	t_list	*stock_b;
-	t_list	*stock_a;
-	int		count;
+	int	tab[5];
 
-	count = basic_find(g, biggest);
-	stock_b = g[1];
-	stock_a = g[0];
-	if (better_in_reverse(g, count))
+
+	if (better_in_rrr(g, basic_find(g, biggest), biggest))
 	{
-
+		reverse_rotate_rr(g);
+		ft_printf("rrr\n");
 	}
-}*/
+	else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
+	{
+		reverse_rotate_a(g);
+		ft_printf("rra\n");
+	}
+	// else if (better_in_reverse_rb(g, basic_find(g, biggest), biggest))
+	// {
+	// 	reverse_rotate_a(g);
+		//ft_printf("rrb\n");
+	// }
+	else
+	{
+		g = rotate_a(g);
+		ft_printf("ra\n");
+	}
+	return (g);
+}
 
 t_list	**push_back_in_a(t_list **g)
 {
@@ -71,26 +94,8 @@ t_list	**push_back_in_a(t_list **g)
 			push_a(g);
 			ft_printf("pa\n");
 		}
-		else if (better_in_rrr(g, basic_find(g, biggest), biggest))
-		{
-			reverse_rotate_rr(g);
-			ft_printf("rrr\n");
-		}
-		else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
-		{
-			reverse_rotate_a(g);
-			ft_printf("rra\n");
-		}
-		// else if (better_in_reverse_rb(g, basic_find(g, biggest), biggest))
-		// {
-		// 	reverse_rotate_a(g);
-			//ft_printf("rrb\n");
-		// }
 		else
-		{
-			rotate_a(g);
-			ft_printf("ra\n");
-		}
+			find_other_opt(g, biggest);
 	}
 	return (g);
 }

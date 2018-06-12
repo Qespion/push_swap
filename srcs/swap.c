@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:32:58 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 14:59:28 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 17:04:07 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	**swap_a(t_list **global)
 	int	tmp;
 
 	if (!global[0])
-		return (0);
+		return (global);
 	tmp = global[0]->nb;
 	global[0]->nb = global[0]->next->nb;
 	global[0]->next->nb = tmp;

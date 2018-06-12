@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 15:31:42 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 20:18:09 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		check_a(int ac, char **av)
 	r = 1;
 	if (ac > 1)
 	{
+		if (av[r][0] == '-' && av[r][1] == 'R' && av[r][2] == '\0')
+			r++;
 		while (r < ac)
 		{
 			if (av[r][i] == '-')
@@ -106,11 +108,14 @@ int		main(int ac, char **av)
 	char	*str;
 	int		fd;
 	int		r;
+	int		teube;
 
+	teube = 0;
 	r = 1;
 	if (ac < 2)
 		return (1);
-	fd = open(av[1], 0);
+	!ft_strcmp("-R", av[1]) ? teube = 1 : 0;
+	fd = open(av[teube == 1 ? 2 : 1], 0);
 	if (get_next_line(fd, &str) == 1)
 	{
 		a = create_a_from_str(str);
@@ -122,6 +127,6 @@ int		main(int ac, char **av)
 		a = create_a(ac, av);
 		r = check_a(ac, av);
 	}
-	r == 0 ? ft_putstr_fd("Error\n", 2) : solver(a);
+	r == 0 ? ft_putstr_fd("Error\n", 2) : solver(a, teube);
 	return (r == 0 ? 1 : 0);
 }

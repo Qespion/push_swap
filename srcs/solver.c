@@ -6,12 +6,16 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 15:30:04 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 16:36:55 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
+
+// BOGO SORT
+#include <time.h>
+#include <stdlib.h>
 
 t_list	**fill_h_in_b(t_list **global)
 {
@@ -91,7 +95,26 @@ t_list	**swap_basic(t_list **global)
 	return (global);
 }
 
-void	solver(t_list *a)
+t_list	**swap_bogo(t_list **global)
+{
+	int	r;
+	t_list	*lowest;
+
+	srand(time(NULL));   // should only be called once
+	r = rand() % 10;
+	lowest = find_lowest(global[0]);
+	while (!is_sort(lowest) || global[1] != NULL)
+	{
+		global = allfunctions(global, r);
+		lowest = find_lowest(global[0]);
+		// print_list(global);
+		// ft_printf("number %d\n", r);
+		r = rand() % 10;
+	}
+	return (global);
+}
+
+void	solver(t_list *a, int bogo)
 {
 	int		r;
 	t_list	**global;
@@ -102,11 +125,16 @@ void	solver(t_list *a)
 		return ;
 	global[0] = a;
 	global[1] = NULL;
-	global = push_in_b(global);
-	global = push_back_in_a(global);
+	if (bogo == 0)
+	{
+		global = push_in_b(global);
+		global = push_back_in_a(global);
+	}
+	else
+		global = swap_bogo(global);
 	global = rotate_to_lower(global);
 	//print_a(global[0]);
-	print_list(global);
+	// print_list(global);
 	ft_lstdel(global[0]);
 	free(global);
 }

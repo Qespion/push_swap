@@ -12,7 +12,8 @@ SRCS_1	=   srcs/checker.c			\
 			srcs/push.c				\
 			srcs/reverse_rotate.c	\
 			srcs/printlist.c		\
-			srcs/apply_checker.c
+			srcs/apply_checker.c	\
+			srcs/visu.c
 
 SRCS_2	=	srcs/push_swap.c		\
 			srcs/solver.c			\

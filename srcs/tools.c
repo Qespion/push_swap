@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 13:20:26 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 15:13:30 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_list	*find_lowest(t_list *lst)
 	t_list	*start;
 	int		nb;
 
+	if (!lst)
+		return (NULL);
 	adr = lst;
 	nb = lst->nb;
 	start = lst;
@@ -31,6 +33,11 @@ t_list	*find_lowest(t_list *lst)
 		}
 		start = start->next;
 	}
+	if (start->nb < nb)
+	{
+		nb = start->nb;
+		adr = start;
+	}
 	return (adr);
 }
 
@@ -40,6 +47,8 @@ t_list	*find_biggest(t_list *lst)
 	t_list	*start;
 	int		nb;
 
+	if (!lst)
+		return (NULL);
 	adr = lst;
 	nb = lst->nb;
 	start = lst;
@@ -106,4 +115,47 @@ t_list	**rotate_to_lower(t_list **lst)
 	}
 	lst = ra >= rra ? move_to_lower(lst, 0) : move_to_lower(lst, 1);
 	return (lst);
+}
+
+t_list	**allfunctions(t_list **g, int r)
+{
+	r == 0 ? ft_printf("sa\n") : 0;
+	g = r == 0 ? swap_a(g) : g;
+	r == 1 ? ft_printf("sb\n") : 0;
+	g = r == 1 ? swap_b(g) : g;
+	r == 2 ? ft_printf("ss\n") : 0;
+	g = r == 2 ? swap_ss(g) : g;
+	r == 3 ? ft_printf("pa\n") : 0;
+	g = r == 3 ? push_a(g) : g;
+	r == 4 ? ft_printf("pb\n") : 0;
+	g = r == 4 ? push_b(g) : g;
+	r == 5 ? ft_printf("ra\n") : 0;
+	g = r == 5 ? rotate_a(g) : g;
+	r == 6 ? ft_printf("rb\n") : 0;
+	g = r == 6 ? rotate_b(g) : g;
+	r == 7 ? ft_printf("rr\n") : 0;
+	g = r == 7 ? rotate_rr(g) : g;
+	r == 8 ? ft_printf("rra\n") : 0;
+	g = r == 8 ? reverse_rotate_a(g) : g;
+	r == 9 ? ft_printf("rrb\n") : 0;
+	g = r == 9 ? reverse_rotate_b(g) : g;
+	r == 10 ? ft_printf("rrr\n") : 0;
+	g = r == 10 ? reverse_rotate_rr(g) : g;
+	return (g);
+}
+
+int		is_sort(t_list *lowest)
+{
+	t_list	*curr;
+
+	if (!lowest)
+		return (0);
+	curr = lowest;
+	while (curr->next != lowest)
+	{
+		if (curr->nb > curr->next->nb)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
 }

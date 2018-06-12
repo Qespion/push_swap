@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:15:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 14:36:23 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 11:56:58 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ t_list	**apply_checker(t_list **g, char *str)
 		g = push_a(g);
 	else if (!ft_strcmp(str, "pb"))
 		g = push_b(g);
-//	print_list(g);
 	return (g);
 }

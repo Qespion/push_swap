@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 16:33:24 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 16:58:50 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		main(int ac, char **av)
 	fd = open(av[visu], 0);
 	if (visu == 2)
 	{
-		ft_printf("test\n");
+		ft_start_visu();
 	}
 	if (get_next_line(fd, &str) == 1)
 	{

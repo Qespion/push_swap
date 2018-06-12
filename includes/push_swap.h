@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 13:51:10 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/12 16:09:39 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*find_biggest(t_list *lst);
 t_list	**rotate_to_lower(t_list **lst);
 
 void	print_list(t_list **global);
-void	solver(t_list *a);
+void	solver(t_list *a, int bogo);
 t_list	*create_a_from_str(char *str);
 t_list	*create_a(int ac, char **av);
 int		check_both_list(t_list **gb);
@@ -34,11 +34,20 @@ t_list	**push_in_b(t_list **g);
 t_list	**push_back_in_a(t_list **g);
 
 /*
+**	random
+*/
+
+int		is_sort(t_list *lowest);
+t_list	**allfunctions(t_list **g, int r);
+
+/*
 **	checker
 */
+
+void	ft_start_visu();
 void	print_a(t_list *a);
 int		create_list_malloc(t_list *a);
-void		create_list(t_list *a);
+void	create_list(t_list *a);
 t_list	**apply_checker(t_list **g, char *str);
 
 /*
