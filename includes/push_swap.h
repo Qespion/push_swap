@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/12 16:09:39 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/13 17:59:49 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ t_list	*create_a(int ac, char **av);
 int		check_both_list(t_list **gb);
 t_list	**push_in_b(t_list **g);
 t_list	**push_back_in_a(t_list **g);
+
+/*
+**	check best solutions for push swap
+*/
+
+t_list	**do_op(t_list **g, int rotate_b, int rotate_a);
+
+int		calc_other_rb(t_list **g, int nb_max, t_list *biggest, int rotation_of_b);
+int		calc_ra(t_list **g, t_list *biggest);
+int		calc_rra(t_list **g, t_list *biggest);
 
 /*
 **	random

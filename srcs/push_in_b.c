@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 14:31:39 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/13 17:34:25 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ t_list	**push_in_b(t_list **g)
 	//ft_printf("just before it all started \ntatatammm\n");
 	while (g[0]->next != start_a)
 	{
+		// if (g[1] && g[0])
+		// {
+		// 	if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb && g[0] != start_a)
+		// 	{
+		// 		ft_printf("pa\n");
+		// 		g = push_a(g);
+		// 	}
+		// }
 		if (g[0]->next->nb < g[0]->nb && g[0]->next->nb >= g[0]->prev->nb && g[0] != start_a)
 		{
 			if (g[1])

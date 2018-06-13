@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/12 20:28:37 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/13 18:07:36 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,44 @@ int		basic_find(t_list **g, t_list *biggest)
 t_list	**find_other_opt(t_list **g, t_list *biggest)
 {
 	int	tab[5];
+	int	lowest;
+	t_list	**curr;
+	int		gap_len;
 
-
-	if (better_in_rrr(g, basic_find(g, biggest), biggest))
+	tab[0] = calc_ra(g, biggest);
+	tab[1] = calc_rra(g, biggest);
+	lowest = tab[1] < tab[0] ? tab[1] : tab[0];
+	gap_len = 0;
+	curr = g;
+	while (gap_len < lowest)
 	{
-		reverse_rotate_rr(g);
-		ft_printf("rrr\n");
+		curr[1] = curr[1]->next;
+		gap_len++;
+		if (calc_other_rb(curr, lowest, biggest, gap_len) < lowest)
+		{
+		//	ft_printf("found a solution %d\n", calc_other_rb(curr, lowest, biggest, gap_len * -1));
+			do_op(g, gap_len, calc_other_rb(curr, lowest, biggest, gap_len));
+			return (g);
+		}
 	}
-	else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
+	curr = g;
+	gap_len = 0;
+	while (gap_len < lowest)
+	{
+		curr[1] = curr[1]->prev;
+		gap_len++;
+		if (calc_other_rb(curr, lowest, biggest, gap_len * -1) < lowest)
+		{
+		//	ft_printf("found a solution %d\n", calc_other_rb(curr, lowest, biggest, gap_len * -1));
+			do_op(g, gap_len * -1, calc_other_rb(curr, lowest, biggest, gap_len));
+			return (g);
+		}
+	}
+	if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
 	{
 		reverse_rotate_a(g);
 		ft_printf("rra\n");
 	}
-	// else if (better_in_reverse_rb(g, basic_find(g, biggest), biggest))
-	// {
-	// 	reverse_rotate_a(g);
-		//ft_printf("rrb\n");
-	// }
 	else
 	{
 		g = rotate_a(g);
