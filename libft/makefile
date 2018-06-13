@@ -1,7 +1,7 @@
 CC          =     gcc
 AR          =   ar
 ARFLAGS     =     rc
-CFLAGS      =     -Wall -Wextra -Werror
+CFLAGS      =     #-Wall -Wextra -Werror
 NAME        =     libft.a
 SRC         =     srcs/ft_printf.c	\
 				  srcs/tools.c		\

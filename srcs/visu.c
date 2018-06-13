@@ -12,11 +12,10 @@
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
-#include "mlx.h"
 
 void	ft_start_visu()
 {
-	void	*mlx_ad;
+	/*void	*mlx_ad;
 	void	*mlx_wds;
 
 	mlx_ad = mlx_init();
@@ -29,4 +28,4 @@ void	ft_start_visu()
 	mlx_string_put(mlx_ad, mlx_wds, 10, 10, 0xFF0000, "54");
 
 	mlx_loop(mlx_ad);
-}
+*/}

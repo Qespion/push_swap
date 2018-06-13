@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 int		find_n(char *str)
 {
 	int	r;
@@ -81,7 +81,7 @@ int		get_next_line(const int fd, char **line)
 {
 	static t_struct	*lst;
 
-	if (fd < 0 || fd > OPEN_MAX || fd == 1 || fd == 2)
+	if (fd < 0 || fd > FOPEN_MAX || fd == 1 || fd == 2)
 		return (-1);
 	if (!lst)
 	{

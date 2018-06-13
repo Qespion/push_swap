@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <inttypes.h>
 
 typedef struct  s_struct
 {

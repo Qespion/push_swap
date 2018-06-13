@@ -47,7 +47,7 @@ minilibx:
 
 checker: $(OBJS1)
 	@echo $(C_GREEN)"----" $(C_BASE)
-	@$(CC) $(FLAGS) $(OBJS1) -L libft/ -lft -o $(NAME1) -L$(MLIBX_DIR) -lmlx -framework OpenGL -framework AppKit
+	@$(CC) $(FLAGS) $(OBJS1) -L libft/ -lft -o $(NAME1) #-L$(MLIBX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 push_swap: $(OBJS2)
 	@echo $(C_GREEN)"----" $(C_BASE)

@@ -76,7 +76,7 @@ void	create_list(t_list *a)
 		ft_strdel(&str);
 	}
 	list_a_checker(g);
-//	print_list(g);
+	print_list(g);
 	ft_lstdel(g[0]);
 	free(g);
 }
