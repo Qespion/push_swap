@@ -44,7 +44,9 @@ SRC         =     srcs/ft_printf.c	\
 				  srcs/ft_memdel.c		\
 				  srcs/ft_lstdel.c		\
 				  srcs/ft_putstr_fd.c	\
-				  srcs/ft_strcmp.c
+				  srcs/ft_strcmp.c		\
+				  srcs/ft_itoa.c		\
+				  srcs/ft_strdup.c
 
 
 C_GREEN	=	"\033[32m"
@@ -52,7 +54,7 @@ C_BLUE	=	"\033[36m"
 C_BASE	=	"\033[00m"
 
 OBJ=$(SRC:.c=.o)
-
+.SUFFIXES:
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -60,7 +62,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 	@echo $(C_GREEN)"[LIBFTv2.1 PLUS FORT en pomme !]" $(C_BASE)
 %.o: %.c
-	@gcc $(CFLAGS) -c $< -o $@ -I includes/
+	@$(CC) $(CFLAGS) -c $< -o $@ -I includes/
 	@echo "file =" $(C_BLUE){ $< } $(C_BASE)
 clean:
 	@rm -f $(OBJ)

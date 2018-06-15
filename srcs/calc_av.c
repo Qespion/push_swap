@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 14:37:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/13 18:10:47 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/15 11:52:04 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,5 @@ t_list	**do_op(t_list **g, int rotate_b, int rotate_a)
 		rotate_a++;
 		g = reverse_rotate_a(g);
 	}
-	// while (rotate_b > 0)
-	// {
-	// 	print_list(g);
-	// 	g[1] = g[1]->next;
-	// 	ft_printf("rb\n");
-	// 	rotate_b--;
-	// }
-	// while (rotate_a > 0)
-	// {
-	// 	g[0] = g[0]->next;
-	// 	ft_printf("ra\n");
-	// 	rotate_a--;
-	// }
 	return (g);
 }

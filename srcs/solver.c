@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/13 18:13:55 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/15 10:30:05 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ t_list	**swap_bogo(t_list **global)
 	{
 		global = allfunctions(global, r);
 		lowest = find_lowest(global[0]);
-		// print_list(global);
-		// ft_printf("number %d\n", r);
 		r = rand() % 10;
 	}
 	return (global);

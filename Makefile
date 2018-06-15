@@ -1,3 +1,5 @@
+.PHONY: all checker push_swap lib minilibx clean fclean re
+.SUFFIXES:
 CC		=	gcc
 FLAGS   =   -Wall -Wextra -Werror
 LIB_DIR =   libft/
@@ -55,7 +57,7 @@ push_swap: $(OBJS2)
 	@$(CC) $(FLAGS) $(OBJS2) -L libft/ -lft -o $(NAME2)
 
 %.o: %.c
-	@gcc $(CFLAGS) -c $< -o $@ -I includes/
+	@$(CC) $(CFLAGS) -c $< -o $@ -I includes/
 	@echo "file =" $(C_BLUE){ $< } $(C_BASE)
 
 clean:
@@ -67,4 +69,3 @@ fclean:     clean
 
 re:         fclean all
 
-.PHONY: all checker push_swap lib minilibx clean fclean re

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/12 15:13:30 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/15 15:53:02 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,35 @@ int		is_sort(t_list *lowest)
 		curr = curr->next;
 	}
 	return (1);
+}
+
+int		ra_or_rra(t_list **g, t_list *start_a)
+{
+	t_list	*cpy_0;
+	int		rra;
+	int		ra;
+
+	rra = 0;
+	ra = 0;
+	cpy_0 = g[0];
+	if (check_list(start_a))
+		return (1);
+	while (!((cpy_0->nb > cpy_0->next->nb && cpy_0->next->nb >= cpy_0->prev->nb
+		&& cpy_0->nb <= cpy_0->next->next->nb) || (cpy_0->next->nb < cpy_0->nb
+		&& cpy_0->next != start_a)))
+	{
+		cpy_0 = cpy_0->next;
+		ra++;
+	}
+	cpy_0 = g[0];
+	while (!((cpy_0->nb > cpy_0->next->nb && cpy_0->next->nb >= cpy_0->prev->nb
+		&& cpy_0->nb <= cpy_0->next->next->nb) || (cpy_0->next->nb < cpy_0->nb
+		&& cpy_0->next != start_a)))
+	{
+		cpy_0 = cpy_0->prev;
+		rra++;
+	}
+	// ft_printf("rra =%d\n", rra);
+	// ft_printf("ra =%d\n", ra);
+	return (rra < ra ? 0 : 1);
 }

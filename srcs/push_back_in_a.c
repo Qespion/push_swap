@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/13 18:07:36 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/15 11:51:50 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_list	**find_other_opt(t_list **g, t_list *biggest)
 		gap_len++;
 		if (calc_other_rb(curr, lowest, biggest, gap_len) < lowest)
 		{
-		//	ft_printf("found a solution %d\n", calc_other_rb(curr, lowest, biggest, gap_len * -1));
 			do_op(g, gap_len, calc_other_rb(curr, lowest, biggest, gap_len));
 			return (g);
 		}
@@ -75,20 +74,9 @@ t_list	**find_other_opt(t_list **g, t_list *biggest)
 		gap_len++;
 		if (calc_other_rb(curr, lowest, biggest, gap_len * -1) < lowest)
 		{
-		//	ft_printf("found a solution %d\n", calc_other_rb(curr, lowest, biggest, gap_len * -1));
 			do_op(g, gap_len * -1, calc_other_rb(curr, lowest, biggest, gap_len));
 			return (g);
 		}
-	}
-	if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
-	{
-		reverse_rotate_a(g);
-		ft_printf("rra\n");
-	}
-	else
-	{
-		g = rotate_a(g);
-		ft_printf("ra\n");
 	}
 	return (g);
 }
@@ -103,20 +91,29 @@ t_list	**push_back_in_a(t_list **g)
 	start_a = find_lowest(g[0]);
 	while (g[1] != NULL)
 	{
-		// ft_printf("rotation = %d\n", basic_find(g, biggest));
 		biggest = find_biggest(g[0]);
 		if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
 		{
 			push_a(g);
 			ft_printf("pa\n");
+			find_other_opt(g, biggest);
 		}
 		else if (g[0]->prev == biggest && g[1]->nb >= biggest->nb)
 		{
 			push_a(g);
 			ft_printf("pa\n");
+			find_other_opt(g, biggest);
+		}
+		else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
+		{
+			reverse_rotate_a(g);
+			ft_printf("rra\n");
 		}
 		else
-			find_other_opt(g, biggest);
+		{
+			g = rotate_a(g);
+			ft_printf("ra\n");
+		}
 	}
 	return (g);
 }
