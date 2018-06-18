@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/15 17:23:18 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/18 13:04:54 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ t_list	**push_in_b(t_list **g)
 			ft_printf("pb\n");
 			g = push_b(g);
 		}
+		if (g[1])
+		{
+			if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
+			{
+				ft_printf("pa\n");
+				g = push_a(g);
+			}
+		}
 	}
 	else if (!check_list(start_a))
 	{
@@ -108,6 +116,14 @@ t_list	**push_in_b(t_list **g)
 			{
 				g = rotate_a(g);
 				ft_printf("ra\n");
+			}
+			if (g[1])
+			{
+				if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
+				{
+					ft_printf("pa\n");
+					g = push_a(g);
+				}
 			}
 		}
 		if (g[0]->nb > g[0]->next->nb && g[0]->next->nb >= g[0]->prev->nb)

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/15 15:53:02 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/18 15:34:11 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,5 @@ int		ra_or_rra(t_list **g, t_list *start_a)
 		cpy_0 = cpy_0->prev;
 		rra++;
 	}
-	// ft_printf("rra =%d\n", rra);
-	// ft_printf("ra =%d\n", ra);
 	return (rra < ra ? 0 : 1);
 }

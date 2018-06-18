@@ -56,6 +56,7 @@ typedef struct	s_printf
 typedef	struct	s_list
 {
 	int				nb;
+	int				p;
 	struct s_list	*prev;
 	struct s_list	*next;
 }				t_list;
@@ -74,7 +75,7 @@ char	*ft_strdup(const char *src);
 /*
 **				LISTES
 */
-
+int		ft_len_list(t_list *list);
 t_list	**ft_insert_one(t_list **global, int lst_nb, int nb);
 t_list	*ft_lstnew(int nb);
 t_list	*ft_lstaddone(int nb, t_list *start, t_list *current);

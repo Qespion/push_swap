@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_len_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 13:50:56 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/18 15:29:19 by oespion          ###   ########.fr       */
+/*   Created: 2018/06/18 17:39:04 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/18 17:43:05 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(int nb)
+int		ft_len_list(t_list *list)
 {
-	t_list	*new;
+	int		r;
+	t_list	*start;
 
-	if (!(new = (t_list*)malloc(sizeof(t_list))))
-		return (NULL);
-	new->nb = nb;
-	new->prev = new;
-	new->next = new;
-	new->p = 0;
-	return (new);
+	start = list;
+	r = 1;
+	while (start->next != list)
+	{
+		r++;
+		start = start->next;
+	}
+	return (r);
 }

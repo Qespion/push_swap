@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/15 10:29:13 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/18 13:58:29 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		check_a(int ac, char **av)
 	r = 1;
 	if (ac > 1)
 	{
-		if (av[r][0] == '-' && av[r][1] == 'R' && av[r][2] == '\0')
+		if (av[r][0] == '-' && av[r][1] == 'v' && av[r][2] == '\0')
 			r++;
 		while (r < ac)
 		{
@@ -125,6 +125,7 @@ int		main(int ac, char **av)
 	else
 	{
 		a = create_a(ac, av);
+		visu == 2 ? ft_start_visu(a) : 0;
 		r = check_a(ac, av);
 	}
 	r == 0 ? ft_putstr_fd("Error\n", 2) : create_list(a);
