@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/18 15:19:36 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/19 13:07:19 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct  s_visu
 **	push swap
 */
 
+int		upper_than_mid_b(t_list **g, int mid_nb);
+int		number_in_the_middle(t_list *g);
 t_list	**tri_b(t_list **g);
 
 int		better_in_reverse_rb(t_list **g, int base_count, t_list *biggest);

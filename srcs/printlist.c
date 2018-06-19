@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 11:16:16 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/10 14:02:19 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/19 14:38:25 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	print_list(t_list **global)
 	}
 	ft_printf("----\n");
 }
-
 
 void	print_a(t_list *a)
 {

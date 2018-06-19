@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 13:06:41 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/18 17:56:24 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/19 12:39:10 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ int		number_in_the_middle(t_list *g)
 	tmp = g;
 	start_list = g;
 	while (tmp->next != start_list)
+	{
+		total += tmp->nb;
+		tmp = tmp->next;
+		nb_w++;
+	}
+	total += tmp->nb;
+	nb_w++;
+	return (total / nb_w);
+}
+
+int		middleman_in_a(t_list *g)
+{
+	long long	total;
+	t_list		*start_list;
+	t_list		*tmp;
+	int			nb_w;
+
+	total = 0;
+	nb_w = 0;
+	tmp = g;
+	start_list = g;
+	while (tmp->p == 1)
 	{
 		total += tmp->nb;
 		tmp = tmp->next;
@@ -88,65 +110,95 @@ int		is_part_a_sort(t_list *g)
 	return (1);
 }
 
-t_list	**tri_both(t_list **g)
+int		upper_than_mid_b(t_list **g, int mid_nb)
 {
-	t_list *lowest_b;
+	t_list	*tmp;
 
-	lowest_b = find_lowest(g[1]);
-	if (g[0]->nb > g[0]->next->nb && g[0]->p == 1 && g[0]->next->p == 1)
+	tmp = g[1];
+	while (tmp->next != g[1])
 	{
-		if (g[1]->nb > g[1]->next->nb && g[1]->next != lowest_b)
+		if (tmp->nb > mid_nb)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int		upper_than_mid_a(t_list **g, int mid_nb)
+{
+	t_list	*tmp;
+
+	tmp = g[0];
+	while (tmp->p == 1)
+	{
+		if (tmp->nb > mid_nb)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+t_list	**subdivide_b(t_list **g)
+{
+	int	mid_nb_b;
+
+	mid_nb_b = number_in_the_middle(g[1]);
+	while (!upper_than_mid_b(g, mid_nb_b))
+	{
+		if (g[1]->nb > mid_nb_b)
 		{
-			ft_printf("ss\n");
-			g = swap_ss(g);
+			ft_printf("pa\n");
+			g = push_a(g);
+			g[0]->p = 3;
 		}
 		else
 		{
-			ft_printf("sa\n");
-			g = swap_a(g);
-		}
-		while (g[0]->prev->nb > g[0]->nb && g[0]->prev->p == 1)
-		{
-			if (g[1]->prev->nb > g[1]->nb && g[1] != lowest_b)
-			{
-				while (g[1]->prev->nb > g[1]->nb && g[1] != lowest_b && g[0]->prev->nb > g[0]->nb && g[0]->prev->p == 1)
-				{
-					ft_printf("rrr\n");
-					g = reverse_rotate_rr(g);
-				}
-			}
-			else
-			{
-				ft_printf("rra\n");
-				g = reverse_rotate_a(g);
-			}
-			if (g[1]->prev->nb > g[1]->nb && g[1] != lowest_b && g[0]->prev->nb > g[0]->nb && g[0]->prev->p == 1)
-			{
-				ft_printf("ss\n");
-				g = swap_ss(g);
-			}
-			else
-			{
-				ft_printf("sa\n");
-				g = swap_a(g);
-			}
+			ft_printf("rb\n");
+			g = rotate_b(g);
 		}
 	}
-	if (!is_part_a_sort(g[0]))
+	while (g[0]->p == 3)
 	{
-		if (!is_sort(g[1]))
+		ft_printf("pb\n");
+		g = push_b(g);
+	}
+	return (g);
+}
+
+t_list	**subdivide_a(t_list **g)
+{
+	int	mid_nb_a;
+	int	mid_nb_b;
+
+	mid_nb_b = number_in_the_middle(g[1]);
+	mid_nb_a = middleman_in_a(g[0]);
+	while (!upper_than_mid_a(g, mid_nb_a))
+	{
+		if (g[0]->nb > mid_nb_a)
 		{
-			ft_printf("rr\n");
-			g = rotate_rr(g);
+			ft_printf("pb\n");
+			g = push_b(g);
 		}
 		else
 		{
-			ft_printf("ra\n");
-			g = rotate_a(g);
+			if (g[1]->nb >= mid_nb_b)
+			{
+				ft_printf("rr\n");
+				g = rotate_rr(g);
+			}
+			else
+			{
+				ft_printf("ra\n");
+				g = rotate_a(g);
+			}
 		}
 	}
-	if (!is_part_a_sort(g[0]))
-		return (tri_both(g));
+	g = subdivide_b(g);
+	while (g[1]->p == 1)
+	{
+		ft_printf("pa\n");
+		g = push_a(g);
+	}
 	return (g);
 }
 
@@ -207,8 +259,10 @@ t_list	**remove_p_in_a(t_list **g)
 		while (g[0]->next == 0)
 		{
 			while (g[0]->next == 0)
-			g = rotate_a(g);
-			ft_printf("ra\n");
+			{
+				g = rotate_a(g);
+				ft_printf("ra\n");
+			}
 		}
 		g = rotate_a(g);
 		ft_printf("ra\n");
@@ -245,7 +299,7 @@ t_list	**tri_b(t_list **g)
 	// ft_printf("-----------------\n");
 	// print_list(g);
 	// ft_printf("-----------------\n");
-	g = tri_both(g);
+	g = subdivide_a(g);
 	g = remove_p_in_a(g);
 	// print_list(g);
 	return (g);

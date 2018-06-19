@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/15 10:12:17 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/19 19:10:36 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,29 @@ t_list	*create_a_from_str(char *str)
 	return (start);
 }
 
+int		check_doublon(t_list *a)
+{
+	t_list	*start;
+	t_list	*tmp;
+	int		nb;
+
+	tmp = a;
+	start = a;
+	while (start->next != a)
+	{
+		nb = start->nb;
+		tmp = start->next;
+		while (tmp != a)
+		{
+			if (tmp->nb == nb)
+				return (0);
+			tmp = tmp->next;
+		}
+		start = start->next;
+	}
+	return (1);
+}
+
 int		main(int ac, char **av)
 {
 	t_list	*a;
@@ -127,6 +150,7 @@ int		main(int ac, char **av)
 		a = create_a(ac, av);
 		r = check_a(ac, av);
 	}
+	r == 1 ? r = check_doublon(a) : 0;
 	r == 0 ? ft_putstr_fd("Error\n", 2) : solver(a, teube);
 	return (r == 0 ? 1 : 0);
 }
