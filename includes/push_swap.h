@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/19 13:07:19 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/20 16:12:23 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define PUSH_SWAP_H
 
 # include "mlx.h"
+/*
+** BOGO SORT
+*/
+#include <time.h>
+#include <stdlib.h>
 
 typedef struct  s_visu
 {
@@ -25,6 +30,10 @@ typedef struct  s_visu
 /*
 **	push swap
 */
+
+int		ft_len_part_list(t_list *list, int	attribut);
+int		real_median(t_list *lst, int attribut);
+t_list	**divide(t_list **g);
 
 int		upper_than_mid_b(t_list **g, int mid_nb);
 int		number_in_the_middle(t_list *g);

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/19 19:15:45 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/20 17:03:00 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,129 +27,48 @@ int		check_list(t_list *start)
 	return (1);
 }
 
+int		upper_mid_left(t_list **g, int mid_nb)
+{
+	t_list	*tmp;
+
+	tmp = g[0];
+	while (tmp->next != g[0])
+	{
+		if (tmp->nb < mid_nb)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+/*
+**	get upper half in b
+**	start sort a
+*/
+
 t_list	**push_in_b(t_list **g)
 {
-	t_list	*start_a;
-	t_list	*biggest;
-	t_list	*start_b;
+	t_list	*start;
+	int		median;
 
-	start_a = find_lowest(g[0]);
-	biggest = find_biggest(g[0]);
-	start_b = find_lowest(g[1]);
-	if (g[0]->nb > g[0]->next->nb && g[0]->next->nb >= g[0]->prev->nb)
+	median = real_median(g[0], 0);
+	start = g[0];
+	while (!upper_mid_left(g, median))
 	{
-		if (g[1])
+		if (g[0]->nb < median)
 		{
-			g[1]->next->nb < g[1]->nb ? ft_printf("ss\n") : ft_printf("sa\n");
-			g = g[1]->next->nb < g[1]->nb ? swap_ss(g) : swap_a(g);
+			g = push_b(g);
+			g[1]->p = 1;
+			ft_printf("pb\n");
 		}
 		else
 		{
-			ft_printf("sa\n");
-			g = swap_a(g);
-		}
-	}
-	else if (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)
-	{
-		if (g[0] == start_a)
-			start_a = g[0]->next;
-		ft_printf("pb\n");
-		g = push_b(g);
-	}
-	if (!ra_or_rra(g, start_a))
-	{
-		while (!((g[0]->nb > g[0]->next->nb && g[0]->next->nb >= g[0]->prev->nb)
-		|| (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)))
-		{
-			g = reverse_rotate_a(g);
-			ft_printf("rra\n");
-		}
-		if (g[0]->nb > g[0]->next->nb && g[0]->next->nb >= g[0]->prev->nb)
-		{
-			if (g[1])
-			{
-				g[1]->next->nb < g[1]->nb ? ft_printf("ss\n") : ft_printf("sa\n");
-				g = g[1]->next->nb < g[1]->nb ? swap_ss(g) : swap_a(g);
-			}
-			else
-			{
-				ft_printf("sa\n");
-				g = swap_a(g);
-			}
-		}
-		else if (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)
-		{
-			if (g[0] == start_a)
-				start_a = g[0]->next;
-			ft_printf("pb\n");
-			g = push_b(g);
-		}
-		if (g[1])
-		{
-			if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
-			{
-				ft_printf("pa\n");
-				g = push_a(g);
-			}
-		}
-	}
-	else if (!check_list(start_a))
-	{
-		while (!((g[0]->nb > g[0]->next->nb && g[0]->next->nb >= g[0]->prev->nb)
-		|| (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)))
-		{
-			if (g[1])
-			{
-				if (!((g[1]->nb > g[1]->next->nb && g[1]->next->nb >= g[1]->prev->nb)
-					|| (g[1]->next->nb < g[1]->nb && g[1]->next != start_b)))
-				{
-					g = rotate_rr(g);
-					ft_printf("rr\n");
-				}
-				else
-				{
-					g = rotate_a(g);
-					ft_printf("ra\n");
-				}
-			}
-			else
-			{
-				g = rotate_a(g);
-				ft_printf("ra\n");
-			}
-			if (g[1])
-			{
-				if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
-				{
-					ft_printf("pa\n");
-					g = push_a(g);
-				}
-			}
-		}
-		if (g[0]->nb > g[0]->next->nb && g[0]->next->nb >= g[0]->prev->nb)
-		{
-			if (g[1])
-			{
-				g[1]->next->nb < g[1]->nb ? ft_printf("ss\n") : ft_printf("sa\n");
-				g = g[1]->next->nb < g[1]->nb ? swap_ss(g) : swap_a(g);
-			}
-			else
-			{
-				ft_printf("sa\n");
-				g = swap_a(g);
-			}
-		}
-		else if (g[0]->next->nb < g[0]->nb && g[0]->next != start_a)
-		{
-			if (g[0] == start_a)
-				start_a = g[0]->next;
-			ft_printf("pb\n");
-			g = push_b(g);
+			// A OPTI > SA||SS<
+			g = rotate_a(g);
+			ft_printf("ra\n");
 		}
 	}
 	// print_list(g);
-	start_a = find_lowest(g[0]);
-	if (!check_list(start_a))
-		return (push_in_b(g));
+	// exit(0);
 	return (g);
 }

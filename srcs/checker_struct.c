@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/19 18:53:02 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/20 13:46:28 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	create_list(t_list *a)
 		g = apply_checker(g, str);
 		ft_strdel(&str);
 	}
-	// list_a_checker(g);
-	ft_printf("OK\n");
+	list_a_checker(g);
+	// ft_printf("OK\n");
 	// print_list(g);
 	ft_lstdel(g[0]);
 	free(g);

@@ -6,12 +6,74 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/18 15:34:11 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/20 17:02:37 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
+
+int		middle(t_list *lst, int attribut)
+{
+	long long 	total;
+	int			len;
+	t_list		*start;
+	t_list		*tmp;
+
+	len = 0;
+	total = 0;
+	start = lst;
+	tmp = lst;
+	while (tmp->p == attribut && tmp->next != lst)
+	{
+		total += tmp->nb;
+		tmp = tmp->next;
+		len++;
+	}
+	if (start->next == lst)
+	{
+		total += tmp->nb;
+		len++;
+	}
+	if (len == 0)
+		return(0);
+	return (total / len);
+}
+
+int		real_median(t_list *lst, int attribut)
+{
+	int		mid;
+	int		lower;
+	int		upper;
+	t_list	*start;
+	t_list	*tmp;
+
+	start = lst;
+	if (!lst)
+		return (0);
+	while (start->p == attribut && start->next != lst)
+		start = start->next;
+	while (start->p != attribut && start->next != lst)
+		start = start->next;
+	if (start->p != attribut && start->next->p == attribut)
+		start = start->next;
+	lower = 1258;
+	upper = 54;
+	mid = middle(start, attribut);
+	while (ft_abs(upper - lower) > 1)
+	{
+		tmp = start;
+		upper = 0;
+		lower = 0;
+		while (tmp->p == attribut && tmp->next != start)
+		{
+			tmp->nb >= mid ? upper++ : lower++;
+			tmp = tmp->next;
+		}
+		mid += upper > lower ? 1 : -1;
+	}
+	return (mid);
+}
 
 t_list	*find_lowest(t_list *lst)
 {
