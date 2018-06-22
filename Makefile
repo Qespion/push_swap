@@ -31,7 +31,8 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/better_in_reverse.c\
 			srcs/calc_av.c			\
 			srcs/tri_b.c			\
-			srcs/divide.c
+			srcs/divide.c			\
+			srcs/backtrack_a.c
 
 LIBFT	=	libft/libft.a
 

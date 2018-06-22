@@ -75,6 +75,7 @@ char	*ft_strdup(const char *src);
 /*
 **				LISTES
 */
+
 int		ft_len_list(t_list *list);
 t_list	**ft_insert_one(t_list **global, int lst_nb, int nb);
 t_list	*ft_lstnew(int nb);

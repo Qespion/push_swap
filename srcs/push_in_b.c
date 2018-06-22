@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/20 17:03:00 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/22 14:33:20 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,48 +27,20 @@ int		check_list(t_list *start)
 	return (1);
 }
 
-int		upper_mid_left(t_list **g, int mid_nb)
+t_list	**push_in_b(t_list **g)
 {
+	t_poz	*best_start;
 	t_list	*tmp;
 
 	tmp = g[0];
+	if (!(best_start = (t_poz*)malloc(sizeof(t_poz))))
+		return (NULL);
+	best_start->starting = g[0];
+	best_start->len = 0;
 	while (tmp->next != g[0])
 	{
-		if (tmp->nb < mid_nb)
-			return (0);
+		best_start = best_starting_pos(g[0],best_start, tmp);
 		tmp = tmp->next;
 	}
-	return (1);
-}
-
-/*
-**	get upper half in b
-**	start sort a
-*/
-
-t_list	**push_in_b(t_list **g)
-{
-	t_list	*start;
-	int		median;
-
-	median = real_median(g[0], 0);
-	start = g[0];
-	while (!upper_mid_left(g, median))
-	{
-		if (g[0]->nb < median)
-		{
-			g = push_b(g);
-			g[1]->p = 1;
-			ft_printf("pb\n");
-		}
-		else
-		{
-			// A OPTI > SA||SS<
-			g = rotate_a(g);
-			ft_printf("ra\n");
-		}
-	}
-	// print_list(g);
-	// exit(0);
 	return (g);
 }

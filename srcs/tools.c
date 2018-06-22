@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/20 17:02:37 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/22 13:06:20 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,36 @@
 
 int		middle(t_list *lst, int attribut)
 {
-	long long 	total;
-	int			len;
-	t_list		*start;
-	t_list		*tmp;
+	int	 	total;
+	int		len;
+	t_list	*start;
+	t_list	*tmp;
 
 	len = 0;
 	total = 0;
 	start = lst;
 	tmp = lst;
-	while (tmp->p == attribut && tmp->next != lst)
+	while (tmp->prev != lst && tmp->p == attribut)
+		tmp = tmp->prev;
+	if (tmp->prev == lst)
+		tmp = tmp->prev;
+	start = tmp;
+	while (tmp->next != start && tmp->p == attribut)
 	{
-		total += tmp->nb;
+		len++;
 		tmp = tmp->next;
-		len++;
 	}
-	if (start->next == lst)
+	if (tmp->next == start)
+		len++;
+	tmp = start;
+	while (tmp->next != start && tmp->p == attribut)
 	{
-		total += tmp->nb;
-		len++;
+		total += tmp->nb / len;
+		tmp = tmp->next;
 	}
-	if (len == 0)
-		return(0);
-	return (total / len);
+	if (tmp->next == start)
+		total += tmp->nb / len;
+	return (total);
 }
 
 int		real_median(t_list *lst, int attribut)
@@ -45,33 +52,62 @@ int		real_median(t_list *lst, int attribut)
 	int		mid;
 	int		lower;
 	int		upper;
+	int		nb_up;
+	int		nb_down;
+
 	t_list	*start;
 	t_list	*tmp;
 
-	start = lst;
+	tmp = lst;
+	lower = 0;
+	upper = 0;
+	nb_up = 2147483647;
+	nb_down = -2147483648;
 	if (!lst)
 		return (0);
-	while (start->p == attribut && start->next != lst)
-		start = start->next;
-	while (start->p != attribut && start->next != lst)
-		start = start->next;
-	if (start->p != attribut && start->next->p == attribut)
-		start = start->next;
-	lower = 1258;
-	upper = 54;
-	mid = middle(start, attribut);
+	while (tmp->prev != lst && tmp->p == attribut)
+		tmp = tmp->prev;
+	if (tmp->prev == lst)
+		tmp = tmp->prev;
+	start = tmp;
+	mid = middle(lst, attribut);
+	while (tmp->next != start && tmp->p == attribut)
+	{
+		nb_up = tmp->nb >= mid && tmp->nb < nb_up ? tmp->nb : nb_up;
+		nb_down = tmp->nb < mid && tmp->nb > nb_down ? tmp->nb : nb_down;
+		tmp->nb < mid ? lower++ : upper++;
+		tmp = tmp->next;
+	}
+	if (tmp->next == start)
+		tmp->nb < mid ? lower++ : upper++;
+	if (lst->next == lst || start->p != attribut || start->next->p != attribut)
+		return (lst->nb);
+	tmp = start;
 	while (ft_abs(upper - lower) > 1)
 	{
+		ft_printf("middle = %d\n", mid);
+		ft_printf("nb_do %d\n", nb_down);
+		ft_printf("upper %d\n", upper);
+		ft_printf("lower %d\n", lower);
+		mid = upper > lower ? nb_up : nb_down;
 		tmp = start;
 		upper = 0;
 		lower = 0;
-		while (tmp->p == attribut && tmp->next != start)
+		nb_up = 2147483647;
+		nb_down = -2147483648;
+		while (tmp->next != start && tmp->p == attribut)
 		{
-			tmp->nb >= mid ? upper++ : lower++;
+			nb_up = tmp->nb >= mid && tmp->nb < nb_up ? tmp->nb : nb_up;
+			nb_down = tmp->nb < mid && tmp->nb > nb_down ? tmp->nb : nb_down;
+			tmp->nb < mid ? lower++ : upper++;
 			tmp = tmp->next;
 		}
-		mid += upper > lower ? 1 : -1;
+		if (tmp->next == start)
+			tmp->nb < mid ? lower++ : upper++;
 	}
+	ft_printf("upper %d\n", upper);
+	ft_printf("lower %d\n", lower);
+	ft_printf("mid = %d\n", mid);
 	return (mid);
 }
 
