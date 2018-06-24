@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/22 13:31:57 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/24 13:07:17 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,14 @@ void	solver(t_list *a, int bogo)
 	{
 		global = push_in_b(global);
 		//print_list(global);
-		// global = divide(global);
+		global = divide(global);
 		// global = push_back_in_a(global);
 	}
 	else
 		global = swap_bogo(global);
-	global = rotate_to_lower(global);
-	//print_a(global[0]);
-	//print_list(global);
+	// global = rotate_to_lower(global);
+	// print_list(global);
+	// print_a(global[0]);
 	ft_lstdel(global[0]);
 	free(global);
 }

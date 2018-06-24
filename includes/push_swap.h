@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/22 13:48:08 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/23 10:52:42 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct  s_poz
 {
+    t_list  *ending;
     t_list  *starting;
     int     len;
 }               t_poz;
@@ -37,7 +38,8 @@ typedef struct  s_visu
 **	push swap
 */
 
-t_poz   *best_starting_pos(t_list *a, t_poz *best_start, t_list *tmp);
+t_list	**go_to_starting_pos(t_poz *best_start, t_list **g);
+t_poz   *best_starting_pos(t_poz *best_start, t_list *tmp);
 int		middle(t_list *lst, int attribut);
 int		ft_len_part_list(t_list *list, int	attribut);
 int		real_median(t_list *lst, int attribut);
