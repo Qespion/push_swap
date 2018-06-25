@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 13:55:01 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/24 10:38:47 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/25 17:17:31 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		upper_left(t_list *g, int mid_nb, int attribut)
 	tmp = g;
 	while (tmp->next != g && tmp->p == attribut)
 	{
-		if (tmp->nb < mid_nb)
+		if (tmp->nb >= mid_nb)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -29,41 +29,26 @@ int		upper_left(t_list *g, int mid_nb, int attribut)
 
 t_list	**divide(t_list **g)
 {
-	int		curr_block;
-	int		deep;
-	int		barrier;
-	int		curr_lst;
 	int		median;
+	int		deep;
 
-	curr_lst = 1;
-	// OPTI == find breakpoint for best result with barrier ??
-	barrier = 10;
 	deep = 1;
-	curr_block = ft_len_part_list(g[curr_lst], deep);
-	ft_printf("curr bloc, = %d\n", curr_block);
-	while (curr_block > barrier)
+	median = real_median(g[0], deep);
+	while (!upper_left(g[1], median, deep))
 	{
-		deep += 2;
-		curr_block = ft_len_part_list(g[curr_lst], deep);
-		median = real_median(g[curr_lst], deep);
-		while (!upper_left(g[curr_lst], median, deep))
+		if (g[1]->nb >= median)
 		{
-			ft_printf("tu rentres \n");
-			if (g[curr_lst]->nb < median)
-			{
-				g[curr_lst]->p = deep;
-				curr_lst == 1 ? ft_printf("pa\n"): ft_printf("pb\n");
-				g = curr_lst == 1 ?	push_a(g) : push_b(g);
-			}
-			else
-			{
-				curr_lst == 1 ? ft_printf("ra\n"): ft_printf("rb\n");
-				g = curr_lst == 1 ?	rotate_a(g) : rotate_b(g);
-			}
+			g = push_a(g);
+			g[0]->p += 1;
+			printf("pa\n");
 		}
-		curr_lst = curr_lst == 1 ? 0 : 1;
+		else
+		{
+			g = rotate_b(g);
+			printf("ra\n");
+		}
 	}
 	print_list(g);
-	exit(0);
+	// conquer(t_list **g);
 	return (g);
 }

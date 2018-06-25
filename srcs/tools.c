@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/23 14:05:48 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/25 16:48:58 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ int		real_median(t_list *lst, int attribut)
 	if (lst->next == lst || start->p != attribut || start->next->p != attribut)
 		return (lst->nb);
 	tmp = start;
-	while (ft_abs(upper - lower) > 1)
+	while (ft_abs(upper - lower) > 2)
 	{
 		ft_printf("middle = %d\n", mid);
 		ft_printf("nb_do %d\n", nb_down);
 		ft_printf("upper %d\n", upper);
 		ft_printf("lower %d\n", lower);
-		mid = upper > lower ? nb_up : nb_down;
+		mid = upper > lower ? nb_up + 1 : nb_down;
 		tmp = start;
 		upper = 0;
 		lower = 0;

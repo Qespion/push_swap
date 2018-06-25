@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/23 10:52:42 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/25 17:48:59 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct  s_visu
 **	push swap
 */
 
+t_list  **partition_list(t_list **g);
 t_list	**go_to_starting_pos(t_poz *best_start, t_list **g);
 t_poz   *best_starting_pos(t_poz *best_start, t_list *tmp);
 int		middle(t_list *lst, int attribut);
@@ -57,6 +58,7 @@ t_list	*find_lowest(t_list *lst);
 t_list	*find_biggest(t_list *lst);
 t_list	**rotate_to_lower(t_list **lst);
 
+t_list	**swap_basic(t_list **global);
 void	print_list(t_list **global);
 void	solver(t_list *a, int bogo);
 t_list	*create_a_from_str(char *str);

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/19 19:08:52 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/25 17:22:50 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,25 @@ t_list	**push_back_in_a(t_list **g)
 	t_list	*biggest;
 
 	current_a = g[0];
-	start_a = find_lowest(g[0]);
 	while (g[1] != NULL)
 	{
+		start_a = find_lowest(g[0]);
 		biggest = find_biggest(g[0]);
 		if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
 		{
 			push_a(g);
 			ft_printf("pa\n");
-			find_other_opt(g, biggest);
 		}
 		else if (g[0]->prev == biggest && g[1]->nb >= biggest->nb)
 		{
 			push_a(g);
 			ft_printf("pa\n");
-			find_other_opt(g, biggest);
+		}
+		else if (g[1]->nb < start_a->nb)
+		{
+			rotate_to_lower(g);
+			push_a(g);
+			ft_printf("pa\n");
 		}
 		else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
 		{

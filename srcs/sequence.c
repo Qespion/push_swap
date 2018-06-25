@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sequence.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
+/*   Updated: 2018/06/25 18:45:59 by oespion          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../libft/includes/libft.h"
+#include "push_swap.h"
+
+t_list  **create_new(t_list **g)
+{
+    t_list  **new_list;
+    t_list  *cpy;
+    t_list  *new_a;
+
+    cpy = g[0];
+    if (!(new_list = (t_list**)malloc(sizeof(t_list*) * 2)))
+        return (0);
+    new_a = ft_lstnew(cpy->nb);
+    new_a = new_a->next;
+    cpy = cpy->next;
+    new_list[0] = new_a;
+    new_list[1] = NULL;
+    while (cpy != g[0])
+    {
+        new_list = ft_insert_one(new_list, 0, cpy->nb);
+        cpy = cpy->next;
+    }
+    return (new_list);
+
+}
+
+t_list  **put_partition_in_list(t_list **nlist, t_list **g)
+{
+    t_list  *tmp;
+
+    tmp = g[0];
+    while (tmp->next != g[0])
+    {
+        while (tmp->nb != nlist[0]->nb)
+            nlist[0] = nlist[0]->next;
+        tmp->p = nlist[0]->p;
+        tmp = tmp->next;
+    }
+    while (tmp->nb != nlist[0]->nb)
+        nlist[0] = nlist[0]->next;
+    tmp->p = nlist[0]->p;
+    return (g);
+}
+
+t_list  **new_attribut(t_list **nlist, int len, int nb_partition)
+{
+    t_list  *lst;
+    int i;
+    int r;
+
+    lst = nlist[0];
+    i = 0;
+    r = 0;
+    while (i < nb_partition)
+    {
+        while (r < len / nb_partition)
+        {
+            lst->p = i;
+            lst = lst->next;
+            r++;
+        }
+        r = 0;
+        i++;
+    }
+    return (nlist);
+}
+
+t_list  **partition_list(t_list **g)
+{
+    int     nb_partition;
+    t_list  **nlist;
+    int     len;
+
+    nb_partition = 16;
+    nlist = swap_basic(create_new(g));
+    len = ft_len_list(nlist[0]);
+    nlist = new_attribut(nlist, len, nb_partition);
+    g = put_partition_in_list(nlist, g);
+    print_list(g);
+    exit(0);
+    return (g);
+}
