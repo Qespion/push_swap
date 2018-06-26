@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 18:45:59 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/26 15:34:13 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_list  **create_new(t_list **g)
         cpy = cpy->next;
     }
     return (new_list);
-
 }
 
 t_list  **put_partition_in_list(t_list **nlist, t_list **g)
@@ -59,22 +58,47 @@ t_list  **new_attribut(t_list **nlist, int len, int nb_partition)
     t_list  *lst;
     int i;
     int r;
+    int part_size;
 
+    part_size = len / nb_partition;
     lst = nlist[0];
-    i = 0;
-    r = 0;
-    while (i < nb_partition)
+    i = 1;
+    r = 1;
+    while (lst->next != nlist[0])
     {
-        while (r < len / nb_partition)
+        if (i > part_size)
         {
-            lst->p = i;
-            lst = lst->next;
-            r++;
+            i = 1;
+            r < nb_partition ? r++ : 0;
         }
-        r = 0;
         i++;
+        lst->p = r;
+        lst = lst->next;
     }
+    lst->p = r;
     return (nlist);
+}
+
+int     calc_nb_partition(t_list **nlist, int len)
+{
+    int nb;
+    int r;
+    t_list  *tmp;
+
+    tmp = nlist[0];
+    r = 0;
+    nb = 1;
+    while (tmp->next != nlist[0])
+    {
+        if (r >= 9)
+        {
+            r = 0;
+            nb++;
+        }
+        r++;
+        tmp = tmp->next;
+    }
+    return (nb);
 }
 
 t_list  **partition_list(t_list **g)
@@ -83,12 +107,13 @@ t_list  **partition_list(t_list **g)
     t_list  **nlist;
     int     len;
 
-    nb_partition = 16;
     nlist = swap_basic(create_new(g));
     len = ft_len_list(nlist[0]);
+    nlist = rotate_to_lower(nlist);
+    nb_partition = calc_nb_partition(nlist, len);
     nlist = new_attribut(nlist, len, nb_partition);
+    // print_list(nlist);
     g = put_partition_in_list(nlist, g);
-    print_list(g);
-    exit(0);
+    ft_lstdel(nlist[0]);
     return (g);
 }

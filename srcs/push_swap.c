@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 13:50:00 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/26 14:21:52 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,23 @@ int		check_a(int ac, char **av)
 	return (1);
 }
 
-t_list	*create_a(int ac, char **av)
+t_list	*create_a(int ac, char **av, int teube)
 {
 	t_list	*a;
 	t_list	*start;
 	int		r;
 
 	r = 2;
-	if (ac > 1)
+	if (ac > 1 && teube == 0)
 	{
 		a = ft_lstnew(ft_atoi(av[1]));
 		start = a;
+	}
+	if (teube == 1 && ac > 1)
+	{
+		a = ft_lstnew(ft_atoi(av[r]));
+		start = a;
+		r++;
 	}
 	while (r < ac)
 	{
@@ -147,7 +153,7 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		a = create_a(ac, av);
+		a = create_a(ac, av, teube);
 		r = check_a(ac, av);
 	}
 	r == 1 ? r = check_doublon(a) : 0;

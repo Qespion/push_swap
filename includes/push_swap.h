@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 17:48:59 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/26 17:47:03 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ typedef struct  s_visu
 **	push swap
 */
 
+
+int	ft_len_list_w_limit(t_list *list, int *limit);
+int		lower_partition_left(t_list *lst, int partition);
+t_list	**tri_recursif(t_list **g);
+
+int     calc_nb_partition(t_list **nlist, int len);
+int		partition_nb(t_list **g);
+int		lower_partition(t_list *lst);
+
 t_list  **partition_list(t_list **g);
 t_list	**go_to_starting_pos(t_poz *best_start, t_list **g);
 t_poz   *best_starting_pos(t_poz *best_start, t_list *tmp);
@@ -62,7 +71,7 @@ t_list	**swap_basic(t_list **global);
 void	print_list(t_list **global);
 void	solver(t_list *a, int bogo);
 t_list	*create_a_from_str(char *str);
-t_list	*create_a(int ac, char **av);
+t_list	*create_a(int ac, char **av, int teube);
 int		check_both_list(t_list **gb);
 t_list	**push_in_b(t_list **g);
 t_list	**push_back_in_a(t_list **g);

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 17:45:14 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/26 16:23:56 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_list	**swap_bogo(t_list **global)
 	int	r;
 	t_list	*lowest;
 
-	srand(time(NULL));   // should only be called once
+	srand(time(NULL));
 	r = rand() % 10;
 	lowest = find_lowest(global[0]);
 	while (!is_sort(lowest) || global[1] != NULL)
@@ -123,14 +123,16 @@ void	solver(t_list *a, int bogo)
 	{
 		global = partition_list(global);
 		global = push_in_b(global);
-		//print_list(global);
+		global = tri_recursif(global);
+		print_list(global);
+		exit(0);
 		// global = divide(global);
-		global = push_back_in_a(global);
+		// glo1bal = push_back_in_a(global);
 	}
 	else
 		global = swap_bogo(global);
-	global = rotate_to_lower(global);
-	// print_list(global);
+	// global = rotate_to_lower(global);
+	print_list(global);
 	// print_a(global[0]);
 	ft_lstdel(global[0]);
 	free(global);

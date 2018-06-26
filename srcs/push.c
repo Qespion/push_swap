@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:46:15 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 16:52:21 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/26 13:49:52 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_list	**push_a(t_list **global)
 	int		p;
 	t_list	*tmp;
 
-	p = global[1]->p;
 	if (global[1] == NULL)
 		return (global);
+	p = global[1]->p;
 	nb = global[1]->nb;
 	tmp = global[1]->next;
 	if (global[1]->next == global[1])
