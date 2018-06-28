@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/20 13:44:40 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/28 11:40:24 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_list	*create_a_from_str(char *str)
 	return (start);
 }
 
-t_list	*create_a(int ac, char **av)
+t_list	*creat_a(int ac, char **av)
 {
 	t_list	*a;
 	t_list	*start;
@@ -147,7 +147,7 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		a = create_a(ac, av);
+		a = creat_a(ac, av);
 		visu == 2 ? ft_start_visu(a) : 0;
 		r = check_a(ac, av);
 	}

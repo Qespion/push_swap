@@ -34,7 +34,8 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/divide.c			\
 			srcs/backtrack_a.c		\
 			srcs/sequence.c			\
-			srcs/tri_recursif.c
+			srcs/tri_recursif.c		\
+			srcs/swap_both_list.c
 
 LIBFT	=	libft/libft.a
 

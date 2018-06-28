@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 13:55:01 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 17:17:31 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/28 16:43:27 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,34 @@ int		upper_left(t_list *g, int mid_nb, int attribut)
 
 t_list	**divide(t_list **g)
 {
-	int		median;
-	int		deep;
+	int		lowest;
+	int		biggest;
+	t_list	*tmp;
 
-	deep = 1;
-	median = real_median(g[0], deep);
-	while (!upper_left(g[1], median, deep))
+	tmp = g[0];
+	lowest = tmp->p;
+	biggest = tmp->p;
+	while (tmp->next != g[0])
 	{
-		if (g[1]->nb >= median)
+		biggest = tmp->p > biggest ? tmp->p : biggest;
+		lowest = tmp->p < lowest ? tmp->p : lowest;
+		tmp = tmp->next;
+	}
+	tmp = g[0];
+	while (g[0]->next != tmp)
+	{
+		if (g[0]->p <= (biggest + lowest) / 2)
 		{
-			g = push_a(g);
-			g[0]->p += 1;
-			printf("pa\n");
+			if (g[0] == tmp)
+				tmp = g[0]->next;
+			ft_printf("pb\n");
+			g = push_b(g);
 		}
 		else
 		{
-			g = rotate_b(g);
-			printf("ra\n");
+			ft_printf("ra\n");
+			g = rotate_a(g);
 		}
 	}
-	print_list(g);
-	// conquer(t_list **g);
 	return (g);
 }

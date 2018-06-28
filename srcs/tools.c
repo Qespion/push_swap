@@ -6,14 +6,14 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/25 16:48:58 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/28 15:39:55 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
-int		middle(t_list *lst, int attribut)
+int		middle(t_list *lst)
 {
 	int	 	total;
 	int		len;
@@ -24,12 +24,12 @@ int		middle(t_list *lst, int attribut)
 	total = 0;
 	start = lst;
 	tmp = lst;
-	while (tmp->prev != lst && tmp->p == attribut)
+	while (tmp->prev != lst)
 		tmp = tmp->prev;
 	if (tmp->prev == lst)
 		tmp = tmp->prev;
 	start = tmp;
-	while (tmp->next != start && tmp->p == attribut)
+	while (tmp->next != start)
 	{
 		len++;
 		tmp = tmp->next;
@@ -37,7 +37,7 @@ int		middle(t_list *lst, int attribut)
 	if (tmp->next == start)
 		len++;
 	tmp = start;
-	while (tmp->next != start && tmp->p == attribut)
+	while (tmp->next != start)
 	{
 		total += tmp->nb / len;
 		tmp = tmp->next;
@@ -47,7 +47,7 @@ int		middle(t_list *lst, int attribut)
 	return (total);
 }
 
-int		real_median(t_list *lst, int attribut)
+int		real_median(t_list *lst)
 {
 	int		mid;
 	int		lower;
@@ -65,13 +65,13 @@ int		real_median(t_list *lst, int attribut)
 	nb_down = -2147483648;
 	if (!lst)
 		return (0);
-	while (tmp->prev != lst && tmp->p == attribut)
+	while (tmp->prev != lst)
 		tmp = tmp->prev;
 	if (tmp->prev == lst)
 		tmp = tmp->prev;
 	start = tmp;
-	mid = middle(lst, attribut);
-	while (tmp->next != start && tmp->p == attribut)
+	mid = middle(lst);
+	while (tmp->next != start)
 	{
 		nb_up = tmp->nb >= mid && tmp->nb < nb_up ? tmp->nb : nb_up;
 		nb_down = tmp->nb < mid && tmp->nb > nb_down ? tmp->nb : nb_down;
@@ -80,22 +80,18 @@ int		real_median(t_list *lst, int attribut)
 	}
 	if (tmp->next == start)
 		tmp->nb < mid ? lower++ : upper++;
-	if (lst->next == lst || start->p != attribut || start->next->p != attribut)
+	if (lst->next == lst)
 		return (lst->nb);
 	tmp = start;
 	while (ft_abs(upper - lower) > 2)
 	{
-		ft_printf("middle = %d\n", mid);
-		ft_printf("nb_do %d\n", nb_down);
-		ft_printf("upper %d\n", upper);
-		ft_printf("lower %d\n", lower);
 		mid = upper > lower ? nb_up + 1 : nb_down;
 		tmp = start;
 		upper = 0;
 		lower = 0;
 		nb_up = 2147483647;
 		nb_down = -2147483648;
-		while (tmp->next != start && tmp->p == attribut)
+		while (tmp->next != start)
 		{
 			nb_up = tmp->nb >= mid && tmp->nb < nb_up ? tmp->nb : nb_up;
 			nb_down = tmp->nb < mid && tmp->nb > nb_down ? tmp->nb : nb_down;
@@ -105,9 +101,6 @@ int		real_median(t_list *lst, int attribut)
 		if (tmp->next == start)
 			tmp->nb < mid ? lower++ : upper++;
 	}
-	ft_printf("upper %d\n", upper);
-	ft_printf("lower %d\n", lower);
-	ft_printf("mid = %d\n", mid);
 	return (mid);
 }
 
