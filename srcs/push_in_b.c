@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/28 16:47:28 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/29 15:08:30 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,6 @@ t_list	**old_push_in_b(t_list **g)
 	return (g);
 }
 
-int		partition_left(t_list *lst, int	partition)
-{
-	t_list	*tmp;
-
-	tmp = lst;
-	while (tmp->next != lst)
-	{
-		if (tmp->p == partition)
-			return (1);
-		tmp = tmp->next;
-	}
-	if (tmp->p == partition)
-		return (1);
-	return (0);
-}
-
 int		lower_partition_left(t_list *lst, int partition)
 {
 	t_list	*tmp;
@@ -155,6 +139,8 @@ t_list	**push_in_b(t_list **g)
 	int	nb_partition;
 
 	nb_partition = calc_nb_partition(g, ft_len_list(g[0]));
+	// if (nb_partition < 5)
+		// return (old_push_in_b(g));
 	limit1 = nb_partition / 3;
 	limit2 = nb_partition / 3 * 2;
 	while (lower_partition_left(g[0], limit2))

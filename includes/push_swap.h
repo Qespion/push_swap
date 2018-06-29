@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/28 15:38:34 by oespion          ###   ########.fr       */
+/*   Updated: 2018/06/29 13:49:57 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef struct  s_visu
 /*
 **	push swap
 */
+
+
+t_list	**old_push_in_b(t_list **g);
+t_list	**subdivide(t_list **g);
 t_list	**swap_both_list(t_list **g);
 
 int	ft_len_list_w_limit(t_list *list, int *limit);
