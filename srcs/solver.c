@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/29 15:15:21 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/01 15:49:50 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,12 @@ void	solver(t_list *a, int bogo)
 		// exit(0);
 		global = divide(global);
 		// print_list(global);
-		// global = subdivide(global);
-		global = swap_both_list(global);
+		// global = empty_a(global);
 		// print_list(global);
+		// exit(0);
+		global = subdivide(global);
+		// print_list(global);
+		global = swap_both_list(global);
 		// exit(0);
 		// ft_printf("%20d\n", check_list(find_lowest(global[0])));
 		// global = divide(global);

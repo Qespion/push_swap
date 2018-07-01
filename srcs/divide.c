@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 13:55:01 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/29 15:08:45 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/01 15:47:35 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_list	**subdivide(t_list **g)
 		tmp = tmp->next;
 	}
 	tmp = g[0];
-	while (partition_left(g[0], lowest))
+	while (!partition_left(g[0], lowest))
 	{
 		if (g[0]->p == lowest || g[0]->p == slowest)
 		{
@@ -114,6 +114,19 @@ t_list	**subdivide(t_list **g)
 			ft_printf("ra\n");
 			g = rotate_a(g);
 		}
+	}
+	return (g);
+}
+
+t_list	**empty_a(t_list **g)
+{
+	t_list	*tmp;
+
+	tmp = g[0];
+	while (g[0]->next != g[0])
+	{
+		ft_printf("pb\n");
+		g = push_b(g);
 	}
 	return (g);
 }
