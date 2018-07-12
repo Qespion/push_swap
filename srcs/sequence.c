@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/28 11:52:54 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/06 13:11:18 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,66 @@ int     calc_nb_partition(t_list **nlist, int len)
         tmp = tmp->next;
     }
     return (nb);
+}
+
+int     calc_spe_list_partition(t_list *g)
+{
+    int     nb_partition;
+    t_list  *tmp;
+    t_list  *start_cmp;
+
+    tmp = g;
+    nb_partition = 0;
+    while (tmp->next != g)
+    {
+        start_cmp = g;
+        while (start_cmp != tmp)
+        {
+            if (start_cmp->p == tmp->p)
+                break ;
+            start_cmp = start_cmp->next;
+        }
+        if (start_cmp == tmp)
+        nb_partition++;
+        tmp = tmp->next;
+    }
+    return (nb_partition);
+}
+
+int     highest_partition(t_list *g)
+{
+    int      highest;
+    t_list  *tmp;
+
+    tmp = g;
+    if (g == NULL)
+        return (0);
+    highest = g->p;
+    while (tmp->next != g)
+    {
+        if (tmp->p > highest)
+            highest = tmp->p;
+        tmp = tmp->next;
+    }
+    return (highest);
+}
+
+int     lowest_partition(t_list *g)
+{
+    int lowest;
+    t_list  *tmp;
+
+    tmp = g;
+    if (g == NULL)
+        return (0);
+    lowest = g->p;
+    while (tmp->next != g)
+    {
+        if (tmp->p < lowest)
+            lowest = tmp->p;
+        tmp = tmp->next;
+    }
+    return (lowest);
 }
 
 t_list  **partition_list(t_list **g)

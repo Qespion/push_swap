@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/28 15:39:55 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/10 11:40:13 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,4 +278,27 @@ int		ra_or_rra(t_list **g, t_list *start_a)
 		rra++;
 	}
 	return (rra < ra ? 0 : 1);
+}
+
+int		rb_or_rrb(t_list **g, t_list *to_find)
+{
+	t_list	*tmp;
+	int		rb;
+	int		rrb;
+
+	rb = 0;
+	rrb = 0;
+	tmp = g[1];
+	while (tmp != to_find)
+	{
+		tmp = tmp->next;
+		rb++;
+	}
+	tmp = g[1];
+	while (tmp != to_find)
+	{
+		tmp = tmp->prev;
+		rrb++;
+	}
+	return rb < rrb ? 1 : 0;
 }

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 13:55:01 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/28 16:43:27 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/09 14:22:27 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,19 @@ t_list	**divide(t_list **g)
 			g = rotate_a(g);
 		}
 	}
+	return (g);
+}
+
+t_list	**lower_divide(t_list **g)
+{
+	int	limit1;
+	int	limit2;
+	int	nb_partition;
+
+	nb_partition = calc_spe_list_partition(g[1]);
+	if (nb_partition < 3)
+		return (g);
+	limit1 = lowest_partition(g[1]) + nb_partition / 3;
+	limit2 = lowest_partition(g[1]) + nb_partition / 3 * 2;
 	return (g);
 }

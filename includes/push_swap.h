@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/28 15:38:34 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/10 11:35:41 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ typedef struct  s_visu
 /*
 **	push swap
 */
+t_list	**n_push_back_in_a(t_list **g);
+
+
+int     place_in_ra(t_list **g, t_list *pos_b);
+int		rb_or_rrb(t_list **g, t_list *to_find);
+int     lowest_partition(t_list *g);
+int     highest_partition(t_list *g);
+
+t_list	**lower_divide(t_list **g);
+int     calc_spe_list_partition(t_list *g);
 t_list	**swap_both_list(t_list **g);
 
 int	ft_len_list_w_limit(t_list *list, int *limit);
@@ -74,7 +84,7 @@ t_list	*create_a_from_str(char *str);
 t_list	*create_a(int ac, char **av, int teube);
 int		check_both_list(t_list **gb);
 t_list	**push_in_b(t_list **g);
-t_list	**push_back_in_a(t_list **g);
+// t_list	**push_back_in_a(t_list **g);
 int		ra_or_rra(t_list **g, t_list *start_a);
 int		check_list(t_list *start);
 

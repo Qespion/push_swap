@@ -26,7 +26,6 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/check_list.c		\
 			srcs/printlist.c		\
 			srcs/push_in_b.c		\
-			srcs/push_back_in_a.c	\
 			srcs/tools.c			\
 			srcs/better_in_reverse.c\
 			srcs/calc_av.c			\
@@ -35,7 +34,8 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/backtrack_a.c		\
 			srcs/sequence.c			\
 			srcs/tri_recursif.c		\
-			srcs/swap_both_list.c
+			srcs/swap_both_list.c	\
+			srcs/n_push_back_in_a.c
 
 LIBFT	=	libft/libft.a
 
