@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 16:23:04 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 17:43:51 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		create_list_malloc(t_list *a)
 		ft_strdel(&str);
 	}
 	ft_printf("OK\n");
-	//print_a(global[0]);
 	free(global);
 	return (0);
 }
@@ -40,7 +39,6 @@ void	list_a_checker(t_list **g)
 	t_list	*start;
 
 	start = g[0];
-	//print_a(g[0]);
 	if (g[1] != NULL)
 	{
 		ft_printf("KO\n");

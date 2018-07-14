@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 14:37:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/15 11:52:04 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 17:41:39 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,23 @@ int		calc_other_rb(t_list **g, int nb_max, t_list *biggest, int rotation_of_b)
 	return (0);
 }
 
+t_list	**do_op2(t_list **g, int rotate_b, int rotate_a)
+{
+	while (rotate_b < 0)
+	{
+		ft_printf("rrb\n");
+		rotate_b++;
+		g = reverse_rotate_b(g);
+	}
+	while (rotate_a < 0)
+	{
+		ft_printf("rra\n");
+		rotate_a++;
+		g = reverse_rotate_a(g);
+	}
+	return (g);
+}
+
 t_list	**do_op(t_list **g, int rotate_b, int rotate_a)
 {
 	while (rotate_b < 0 && rotate_a < 0)
@@ -87,17 +104,6 @@ t_list	**do_op(t_list **g, int rotate_b, int rotate_a)
 		rotate_a--;
 		g = reverse_rotate_rr(g);
 	}
-	while (rotate_b < 0)
-	{
-		ft_printf("rrb\n");
-		rotate_b++;
-		g = reverse_rotate_b(g);
-	}
-	while (rotate_a < 0)
-	{
-		ft_printf("rra\n");
-		rotate_a++;
-		g = reverse_rotate_a(g);
-	}
+	g = do_op2(g, rotate_b, rotate_a);
 	return (g);
 }

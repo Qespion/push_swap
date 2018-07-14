@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:21:51 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/09 15:07:05 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 17:43:14 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int		better_in_reverse_rb(t_list **g, int base_count, t_list *biggest)
 		if (count > len)
 			return (0);
 	}
-	if (count >= base_count)
-		return (0);
-	return (count);
+	return count >= base_count ? 0 : count;
 }
 
 int		better_in_rrr(t_list **g, int base_count, t_list *biggest)

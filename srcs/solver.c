@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 16:25:48 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 17:20:24 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,10 @@ t_list	**swap_basic(t_list **global)
 			if (global[0]->next->nb < global[0]->nb)
 			{
 				tri = 1;
-				// ft_printf("sa\n");
 				global = swap_a(global);
 			}
-			// ft_printf("ra\n");
 			global = rotate_a(global);
 		}
-		// ft_printf("ra\n");
 		global = rotate_a(global);
 	}
 	return (global);
@@ -133,7 +130,6 @@ void	solver(t_list *a, int bogo)
 	else
 		global = swap_bogo(global);
 	global = rotate_to_lower(global);
-	print_list(global);
 	ft_lstdel(global[0]);
 	free(global);
 }

@@ -13,7 +13,8 @@ SRCS_1	=   srcs/checker.c			\
 			srcs/push.c				\
 			srcs/reverse_rotate.c	\
 			srcs/printlist.c		\
-			srcs/apply_checker.c
+			srcs/apply_checker.c	\
+			srcs/checker_a.c
 
 SRCS_2	=	srcs/push_swap.c		\
 			srcs/solver.c			\
@@ -30,7 +31,6 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/calc_av.c			\
 			srcs/tri_b.c			\
 			srcs/divide.c			\
-			srcs/backtrack_a.c		\
 			srcs/sequence.c			\
 			srcs/tri_recursif.c		\
 			srcs/swap_both_list.c

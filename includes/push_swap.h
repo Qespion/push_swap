@@ -6,17 +6,13 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 16:22:25 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 17:46:46 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "mlx.h"
-/*
-** BOGO SORT
-*/
 #include <time.h>
 #include <stdlib.h>
 
@@ -27,10 +23,8 @@ typedef struct  s_poz
     int     len;
 }               t_poz;
 
-/*
-**	push swap
-*/
-
+int		checker_str(char *str);
+int		check_a(int ac, char **av);
 int		ft_lst_len(t_list *lst);
 t_list	**sorting_a(t_list **g, t_list *start_a);
 t_list	**swap_both_list(t_list **g);
@@ -74,36 +68,20 @@ t_list	**push_back_in_a(t_list **g);
 int		ra_or_rra(t_list **g, t_list *start_a);
 int		check_list(t_list *start);
 
-/*
-**	check best solutions for push swap
-*/
-
 t_list	**do_op(t_list **g, int rotate_b, int rotate_a);
 
 int		calc_other_rb(t_list **g, int nb_max, t_list *biggest, int rotation_of_b);
 int		calc_ra(t_list **g, t_list *biggest);
 int		calc_rra(t_list **g, t_list *biggest);
 
-/*
-**	random
-*/
-
 int		is_sort(t_list *lowest);
 t_list	**allfunctions(t_list **g, int r);
-
-/*
-**	checker
-*/
 
 void	ft_start_visu(t_list *a);
 void	print_a(t_list *a);
 int		create_list_malloc(t_list *a);
 void	create_list(t_list *a);
 t_list	**apply_checker(t_list **g, char *str);
-
-/*
-**	mod functions
-*/
 
 t_list	**swap_a(t_list **global);
 t_list	**swap_b(t_list **global);
