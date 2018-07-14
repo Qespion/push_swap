@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/01 12:42:06 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 16:22:25 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,12 @@ typedef struct  s_poz
     int     len;
 }               t_poz;
 
-typedef struct  s_visu
-{
-    int is_active;
-    void    *mlx_ad;
-    void    *mlx_wds;
-}               t_visu;
-
 /*
 **	push swap
 */
 
-t_list	**empty_a(t_list **g);
-t_list	**old_push_in_b(t_list **g);
-t_list	**subdivide(t_list **g);
+int		ft_lst_len(t_list *lst);
+t_list	**sorting_a(t_list **g, t_list *start_a);
 t_list	**swap_both_list(t_list **g);
 
 int	ft_len_list_w_limit(t_list *list, int *limit);

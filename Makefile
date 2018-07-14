@@ -5,7 +5,6 @@ FLAGS   =   -Wall -Wextra -Werror
 LIB_DIR =   libft/
 NAME1	=	checker
 NAME2	=	push_swap
-MLIBX_DIR	=	minilibx/
 
 SRCS_1	=   srcs/checker.c			\
 			srcs/checker_struct.c	\
@@ -14,8 +13,7 @@ SRCS_1	=   srcs/checker.c			\
 			srcs/push.c				\
 			srcs/reverse_rotate.c	\
 			srcs/printlist.c		\
-			srcs/apply_checker.c	\
-			srcs/visu.c
+			srcs/apply_checker.c
 
 SRCS_2	=	srcs/push_swap.c		\
 			srcs/solver.c			\
@@ -46,17 +44,14 @@ C_BASE	=	"\033[00m"
 OBJS1    =   $(SRCS_1:.c=.o)
 OBJS2	=	$(SRCS_2:.c=.o)
 
-all:	lib minilibx checker push_swap
+all:	lib checker push_swap
 
 lib:
 	@make -C libft/
 
-minilibx:
-	@make -C minilibx/
-
 checker: $(OBJS1)
 	@echo $(C_GREEN)"----" $(C_BASE)
-	@$(CC) $(FLAGS) $(OBJS1) -L libft/ -lft -o $(NAME1) -L$(MLIBX_DIR) -lmlx -framework OpenGL -framework AppKit
+	@$(CC) $(FLAGS) $(OBJS1) -L libft/ -lft -o $(NAME1)
 
 push_swap: $(OBJS2)
 	@echo $(C_GREEN)"----" $(C_BASE)

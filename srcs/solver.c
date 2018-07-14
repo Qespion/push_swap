@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/01 15:49:50 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 16:25:48 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,40 +110,30 @@ t_list	**swap_bogo(t_list **global)
 
 void	solver(t_list *a, int bogo)
 {
-	int		r;
 	t_list	**global;
 	t_list	*b;
 
-	r = 0;
 	if (!(global = (t_list**)malloc(sizeof(t_list*) * 2)))
 		return ;
 	global[0] = a;
 	global[1] = NULL;
 	if (bogo == 0)
 	{
-		global = partition_list(global);
-		global = push_in_b(global);
-		// global = old_push_in_b(global);
-		// print_list(global);
-		// exit(0);
-		global = divide(global);
-		// print_list(global);
-		// global = empty_a(global);
-		// print_list(global);
-		// exit(0);
-		global = subdivide(global);
-		// print_list(global);
-		global = swap_both_list(global);
-		// exit(0);
-		// ft_printf("%20d\n", check_list(find_lowest(global[0])));
-		// global = divide(global);
+		if (ft_lst_len(global[0]) > 30)
+		{
+			global = partition_list(global);
+			global = push_in_b(global);
+			global = divide(global);
+			global = swap_both_list(global);
+		}
+		else
+			global = sorting_a(global, find_lowest(global[0]));
 		global = push_back_in_a(global);
 	}
 	else
 		global = swap_bogo(global);
 	global = rotate_to_lower(global);
-	// print_list(global);
-	// print_a(global[0]);
+	print_list(global);
 	ft_lstdel(global[0]);
 	free(global);
 }

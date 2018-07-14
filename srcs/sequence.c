@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/01 11:59:35 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 15:36:52 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_list  **partition_list(t_list **g)
     // print_list(nlist);
     g = put_partition_in_list(nlist, g);
     ft_lstdel(nlist[0]);
+    free(nlist);
     return (g);
 }

@@ -47,8 +47,8 @@ SRC         =     srcs/ft_printf.c	\
 				  srcs/ft_strcmp.c		\
 				  srcs/ft_itoa.c		\
 				  srcs/ft_strdup.c		\
-				  srcs/ft_len_list.c	\
-				  srcs/ft_isdigit.c
+				  srcs/ft_len_list.c
+
 
 C_GREEN	=	"\033[32m"
 C_BLUE	=	"\033[36m"

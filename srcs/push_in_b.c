@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:26:17 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/01 15:50:42 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/14 16:16:43 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		check_list(t_list *start)
 		return (1);
 	lst = find_lowest(start);
 	tmp = lst;
-	while (lst->next != start)
+	while (lst->next != find_lowest(start))
 	{
 		if (lst->next->nb < lst->nb)
 		{
@@ -51,37 +51,25 @@ t_list	**sorting_a(t_list **g, t_list *start_a)
 		ft_printf("pb\n");
 		g = push_b(g);
 	}
-	if (!check_list(start_a) && !check_list(find_lowest(g[0])))
+	if (!check_list(start_a))
 		return (sorting_a(g, start_a));
 	return (g);
 }
 
-t_list	**old_push_in_b(t_list **g)
+int		partition_left(t_list *lst, int	partition)
 {
-	t_poz	*best_start;
 	t_list	*tmp;
 
-	tmp = g[0];
-	if (!(best_start = (t_poz*)malloc(sizeof(t_poz))))
-		return (NULL);
-	best_start->starting = g[0];
-	best_start->len = 0;
-	best_start = best_starting_pos(best_start, tmp);
-	while (tmp->next != g[0])
+	tmp = lst;
+	while (tmp->next != lst)
 	{
-		// ft_printf("start nb = %d\n", best_start->starting->nb);
-		// ft_printf("best_start len = %d\n", best_start->len);
+		if (tmp->p == partition)
+			return (1);
 		tmp = tmp->next;
-		// best_start = best_starting_pos(best_start, tmp);
 	}
-	// ft_printf("len of new a %d\n", best_start->len);
-	// ft_printf("best_start = %d\n", best_start->starting->nb);
-	// g = go_to_starting_pos(best_start, g);
-	// print_list(g);
-	g = sorting_a(g, best_start->starting);
-	// print_list(g);
-	free(best_start);
-	return (g);
+	if (tmp->p == partition)
+		return (1);
+	return (0);
 }
 
 int		lower_partition_left(t_list *lst, int partition)
@@ -139,8 +127,6 @@ t_list	**push_in_b(t_list **g)
 	int	nb_partition;
 
 	nb_partition = calc_nb_partition(g, ft_len_list(g[0]));
-	// if (nb_partition < 5)
-		// return (old_push_in_b(g));
 	limit1 = nb_partition / 3;
 	limit2 = nb_partition / 3 * 2;
 	while (lower_partition_left(g[0], limit2))
@@ -149,13 +135,11 @@ t_list	**push_in_b(t_list **g)
 		{
 			ft_printf("pb\n");
 			g = push_b(g);
-			// g[1]->p = 240;
 		}
 		else if (g[0]->p <= limit2)
 		{
 			ft_printf("pb\n");
 			g = push_b(g);
-			// g[1]->p = 120;
 			if (g[0]->next != g[0])
 			{
 				ft_printf("rb\n");
@@ -168,9 +152,5 @@ t_list	**push_in_b(t_list **g)
 			g = rotate_a(g);
 		}
 	}
-	// print_list(g);
-	// g = old_push_in_b(g);
-	// ft_printf("limit1 = %d\n", limit1);
-	// ft_printf("limit2 = %d\n", limit2);
 	return (g);
 }
