@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 17:46:46 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 13:49:00 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct  s_poz
     int     len;
 }               t_poz;
 
+t_list	**move_to_lower(t_list **lst, int r);
 int		checker_str(char *str);
 int		check_a(int ac, char **av);
 int		ft_lst_len(t_list *lst);

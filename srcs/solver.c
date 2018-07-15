@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 17:20:24 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:19:29 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_list	**swap_basic(t_list **global)
 
 t_list	**swap_bogo(t_list **global)
 {
-	int	r;
+	int		r;
 	t_list	*lowest;
 
 	srand(time(NULL));

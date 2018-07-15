@@ -6,12 +6,18 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:15:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/12 11:56:58 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:22:21 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
+
+void	leave(void)
+{
+	ft_printf("Error\n");
+	exit(-1);
+}
 
 t_list	**apply_checker(t_list **g, char *str)
 {
@@ -27,7 +33,7 @@ t_list	**apply_checker(t_list **g, char *str)
 		g = rotate_b(g);
 	else if (!ft_strcmp(str, "rr"))
 		g = rotate_rr(g);
-	 else if (!ft_strcmp(str, "sa"))
+	else if (!ft_strcmp(str, "sa"))
 		g = swap_a(g);
 	else if (!ft_strcmp(str, "sb"))
 		g = swap_b(g);
@@ -37,5 +43,7 @@ t_list	**apply_checker(t_list **g, char *str)
 		g = push_a(g);
 	else if (!ft_strcmp(str, "pb"))
 		g = push_b(g);
+	else
+		leave();
 	return (g);
 }

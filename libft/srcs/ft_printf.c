@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:52:36 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 10:16:27 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 12:04:27 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		parce_percent(t_printf *p, const char *format)
 int			ft_printf(const char *format, ...)
 {
 	t_printf	*p;
-	int		outnbr;
+	int			outnbr;
 
 	p = create_struct();
 	va_start(p->ap, format);

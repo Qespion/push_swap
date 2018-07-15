@@ -6,12 +6,33 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 16:25:28 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 13:44:46 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
+
+void	check_int_max(int ac, char **av)
+{
+	int		r;
+	char	**tmp;
+
+	tmp = av;
+	r = 1;
+	if (ac > 1)
+	{
+		while (r < ac)
+		{
+			if (ft_atoi(av[r]) > 2147483647)
+			{
+				ft_printf("Error\n");
+				exit(-1);
+			}
+			r++;
+		}
+	}
+}
 
 int		check_a(int ac, char **av)
 {
@@ -20,6 +41,7 @@ int		check_a(int ac, char **av)
 
 	i = 0;
 	r = 1;
+	check_int_max(ac, av);
 	if (ac > 1)
 	{
 		if (av[r][0] == '-' && av[r][1] == 'R' && av[r][2] == '\0')
@@ -67,6 +89,22 @@ t_list	*create_a(int ac, char **av, int teube)
 	return (start);
 }
 
+void	int_max(char *str)
+{
+	char	*tmp;
+
+	tmp = str;
+	while (*tmp)
+	{
+		if (ft_atoi(tmp) > 2147483647)
+		{
+			ft_printf("Error\n");
+			exit(-1);
+		}
+		tmp++;
+	}
+}
+
 int		checker_str(char *str)
 {
 	int	r;
@@ -84,7 +122,12 @@ int		checker_str(char *str)
 			r++;
 	}
 	if (str[r - 1] >= '0' && str[r - 1] <= '9' && str[r] == '\0')
+	{
+		int_max(str);
+		ft_strdel(&str);
 		return (1);
+	}
+	ft_strdel(&str);
 	return (0);
 }
 
@@ -149,7 +192,6 @@ int		main(int ac, char **av)
 	{
 		a = create_a_from_str(str);
 		r = checker_str(str);
-		ft_strdel(&str);
 	}
 	else
 	{

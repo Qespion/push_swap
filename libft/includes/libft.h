@@ -96,7 +96,7 @@ int				ft_strlen(char *str);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 void			ft_strdel(char **as);
-int				ft_atoi(const char *str);
+intmax_t		ft_atoi(const char *str);
 void			printchar(t_printf *p, char letter);
 void			ft_putcharnf(t_printf *p, char letter);
 void			ft_putcharn(t_printf *p, char c);

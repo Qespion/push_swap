@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 14:37:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 17:41:39 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:23:39 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		calc_rra(t_list **g, t_list *biggest)
 	return (nb);
 }
 
-int		calc_other_rb(t_list **g, int nb_max, t_list *biggest, int rotation_of_b)
+int		calc_other_rb(t_list **g, int nb_max, t_list *biggest, int rot_of_b)
 {
 	t_list	*a;
 	t_list	*b;

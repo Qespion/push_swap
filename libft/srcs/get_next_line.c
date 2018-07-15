@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/28 16:04:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/12 15:18:31 by oespion          ###   ########.fr       */
+/*   Created: 2018/04/30 12:43:02 by oespion           #+#    #+#             */
+/*   Updated: 2018/07/15 13:43:30 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,32 @@ int		find_n(char *str)
 	return (-1);
 }
 
-void	ft_strleft(t_struct *lst, char **line)
+int		ft_strleft(t_struct *lst, char **line)
 {
-	int	r;
+	int		r;
+	char	*tmp;
 
 	r = 0;
+	if (!lst->str)
+		return (0);
 	while (lst->str[r])
 	{
 		if (lst->str[r] == '\n')
 		{
-			*line = ft_strnew(BUFF_SIZE);
 			*line = ft_memmove(*line, lst->str, find_n(lst->str) - 1);
-			lst->str = ft_strsub(lst->str, find_n(lst->str),
-				ft_strlen(lst->str) - find_n(lst->str));
-			return ;
+			tmp = ft_strdup(lst->str);
+			ft_strdel(&lst->str);
+			lst->str = ft_strsub(tmp, find_n(tmp),
+				ft_strlen(tmp) - find_n(tmp));
+			ft_strdel(&tmp);
+			return (1);
 		}
 		r++;
 	}
+	ft_strdel(line);
+	*line = lst->str;
+	lst->str = NULL;
+	return (0);
 }
 
 int		ft_read(t_struct *lst, char **line, const int fd)
@@ -53,13 +62,6 @@ int		ft_read(t_struct *lst, char **line, const int fd)
 
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		if (!(*line))
-		{
-			if (!lst->str)
-				*line = ft_strnew(0);
-			else
-				*line = lst->str;
-		}
 		buff[ret] = '\0';
 		if (find_n(buff) == -1)
 			*line = ft_strfjoin(*line, buff);
@@ -67,33 +69,30 @@ int		ft_read(t_struct *lst, char **line, const int fd)
 		{
 			i = 0;
 			*line = ft_strfjoin(*line, buff);
+			lst->str = ft_strsub(buff, find_n(buff), BUFF_SIZE - find_n(buff));
 			while ((*line)[i] != '\n')
 				i++;
 			(*line)[i] = '\0';
-			lst->str = ft_strsub(buff, find_n(buff), BUFF_SIZE - find_n(buff));
 			return (1);
 		}
 	}
-	return (0);
+	return (ret == -1) ? -1 : 0;
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static t_struct	*lst;
+	static t_struct	lst[OPEN_MAX];
+	int				ruff;
 
-	if (fd < 0 || fd > OPEN_MAX || fd == 1 || fd == 2)
+	if (!line || fd < 0 || fd > OPEN_MAX)
 		return (-1);
-	if (!lst)
-	{
-		if (!(lst = (t_struct*)malloc(sizeof(t_struct))))
-			return (-1);
-		lst->str = 0;
-	}
-	if (lst->str)
-		ft_strleft(lst, line);
-	if (ft_read(lst, line, fd) == 1)
+	*line = ft_strnew(BUFF_SIZE);
+	if (ft_strleft(&lst[fd], line) == 1)
 		return (1);
-	if (!(*line))
-		return (0);
-	return (1);
+	ruff = ft_read(&lst[fd], line, fd);
+	if (ruff == -1)
+		return (-1);
+	if ((*line)[0] != '\0' || ruff == 1)
+		return (1);
+	return (0);
 }

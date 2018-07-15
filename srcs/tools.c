@@ -6,103 +6,12 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 15:39:19 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 13:52:04 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
-
-int		middle(t_list *lst)
-{
-	int	 	total;
-	int		len;
-	t_list	*start;
-	t_list	*tmp;
-
-	len = 0;
-	total = 0;
-	start = lst;
-	tmp = lst;
-	while (tmp->prev != lst)
-		tmp = tmp->prev;
-	if (tmp->prev == lst)
-		tmp = tmp->prev;
-	start = tmp;
-	while (tmp->next != start)
-	{
-		len++;
-		tmp = tmp->next;
-	}
-	if (tmp->next == start)
-		len++;
-	tmp = start;
-	while (tmp->next != start)
-	{
-		total += tmp->nb / len;
-		tmp = tmp->next;
-	}
-	if (tmp->next == start)
-		total += tmp->nb / len;
-	return (total);
-}
-
-int		real_median(t_list *lst)
-{
-	int		mid;
-	int		lower;
-	int		upper;
-	int		nb_up;
-	int		nb_down;
-
-	t_list	*start;
-	t_list	*tmp;
-
-	tmp = lst;
-	lower = 0;
-	upper = 0;
-	nb_up = 2147483647;
-	nb_down = -2147483648;
-	if (!lst)
-		return (0);
-	while (tmp->prev != lst)
-		tmp = tmp->prev;
-	if (tmp->prev == lst)
-		tmp = tmp->prev;
-	start = tmp;
-	mid = middle(lst);
-	while (tmp->next != start)
-	{
-		nb_up = tmp->nb >= mid && tmp->nb < nb_up ? tmp->nb : nb_up;
-		nb_down = tmp->nb < mid && tmp->nb > nb_down ? tmp->nb : nb_down;
-		tmp->nb < mid ? lower++ : upper++;
-		tmp = tmp->next;
-	}
-	if (tmp->next == start)
-		tmp->nb < mid ? lower++ : upper++;
-	if (lst->next == lst)
-		return (lst->nb);
-	tmp = start;
-	while (ft_abs(upper - lower) > 2)
-	{
-		mid = upper > lower ? nb_up + 1 : nb_down;
-		tmp = start;
-		upper = 0;
-		lower = 0;
-		nb_up = 2147483647;
-		nb_down = -2147483648;
-		while (tmp->next != start)
-		{
-			nb_up = tmp->nb >= mid && tmp->nb < nb_up ? tmp->nb : nb_up;
-			nb_down = tmp->nb < mid && tmp->nb > nb_down ? tmp->nb : nb_down;
-			tmp->nb < mid ? lower++ : upper++;
-			tmp = tmp->next;
-		}
-		if (tmp->next == start)
-			tmp->nb < mid ? lower++ : upper++;
-	}
-	return (mid);
-}
 
 t_list	*find_lowest(t_list *lst)
 {
@@ -233,64 +142,4 @@ t_list	**allfunctions(t_list **g, int r)
 	r == 10 ? ft_printf("rrr\n") : 0;
 	g = r == 10 ? reverse_rotate_rr(g) : g;
 	return (g);
-}
-
-int		is_sort(t_list *lowest)
-{
-	t_list	*curr;
-
-	if (!lowest)
-		return (0);
-	curr = lowest;
-	while (curr->next != lowest)
-	{
-		if (curr->nb > curr->next->nb)
-			return (0);
-		curr = curr->next;
-	}
-	return (1);
-}
-
-int		ra_or_rra(t_list **g, t_list *start_a)
-{
-	t_list	*cpy_0;
-	int		rra;
-	int		ra;
-
-	rra = 0;
-	ra = 0;
-	cpy_0 = g[0];
-	if (check_list(start_a))
-		return (1);
-	while (!((cpy_0->nb > cpy_0->next->nb && cpy_0->next->nb >= cpy_0->prev->nb
-		&& cpy_0->nb <= cpy_0->next->next->nb) || (cpy_0->next->nb < cpy_0->nb
-		&& cpy_0->next != start_a)))
-	{
-		cpy_0 = cpy_0->next;
-		ra++;
-	}
-	cpy_0 = g[0];
-	while (!((cpy_0->nb > cpy_0->next->nb && cpy_0->next->nb >= cpy_0->prev->nb
-		&& cpy_0->nb <= cpy_0->next->next->nb) || (cpy_0->next->nb < cpy_0->nb
-		&& cpy_0->next != start_a)))
-	{
-		cpy_0 = cpy_0->prev;
-		rra++;
-	}
-	return (rra < ra ? 0 : 1);
-}
-
-int		ft_lst_len(t_list *lst)
-{
-	int		total;
-	t_list	*tmp;
-
-	total = 1;
-	tmp = lst;
-	while (tmp->next != lst)
-	{
-		total++;
-		tmp = tmp->next;
-	}
-	return (total);
 }

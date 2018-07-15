@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:46:15 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/26 13:49:52 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:29:06 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_list	**push_a(t_list **global)
 {
-	int 	nb;
+	int		nb;
 	int		p;
 	t_list	*tmp;
 
@@ -42,9 +42,19 @@ t_list	**push_a(t_list **global)
 	return (global);
 }
 
+t_list	**end_push_b(t_list **global, int nb, int p)
+{
+	if (global[1] != NULL)
+		global = ft_insert_one(global, 1, nb);
+	else
+		global[1] = ft_lstnew(nb);
+	global[1]->p = p;
+	return (global);
+}
+
 t_list	**push_b(t_list **global)
 {
-	int 	nb;
+	int		nb;
 	int		p;
 	t_list	*tmp;
 	t_list	*todel;
@@ -65,10 +75,5 @@ t_list	**push_b(t_list **global)
 		ft_lstdelone(global[0]);
 		global[0] = tmp;
 	}
-	if (global[1] != NULL)
-		global = ft_insert_one(global, 1, nb);
-	else
-		global[1] = ft_lstnew(nb);
-	global[1]->p = p;
-	return (global);
+	return (end_push_b(global, nb, p));
 }

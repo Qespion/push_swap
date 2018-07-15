@@ -29,11 +29,10 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/tools.c			\
 			srcs/better_in_reverse.c\
 			srcs/calc_av.c			\
-			srcs/tri_b.c			\
 			srcs/divide.c			\
 			srcs/sequence.c			\
-			srcs/tri_recursif.c		\
-			srcs/swap_both_list.c
+			srcs/swap_both_list.c	\
+			srcs/tools_2.c
 
 LIBFT	=	libft/libft.a
 
