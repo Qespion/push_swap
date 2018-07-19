@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 13:55:01 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 15:21:27 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 17:12:09 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ t_list	**p_divide(t_list **g, int lowest, int biggest, t_list *tmp)
 			ft_printf("ra\n");
 			g = rotate_a(g);
 		}
+	}
+	if (ft_len_list(g[0]) > 50)
+	{
+		g = divide(g);
 	}
 	return (g);
 }

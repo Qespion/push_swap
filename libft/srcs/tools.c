@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 13:54:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 10:16:53 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 13:50:06 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			longlong_len(intmax_t nb)
 	return (i);
 }
 
-t_printf		*create_struct(void)
+t_printf	*create_struct(void)
 {
 	t_printf	*p;
 
@@ -84,7 +84,7 @@ t_printf		*create_struct(void)
 	return (p);
 }
 
-t_printf		*reset_struct(t_printf *p)
+t_printf	*reset_struct(t_printf *p)
 {
 	p->precision = -1;
 	p->width = -1;

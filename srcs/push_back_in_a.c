@@ -6,24 +6,22 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 15:42:06 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 13:14:11 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
-
 int		basic_find(t_list **g, t_list *biggest)
 {
+	int		count;
 	t_list	*cpy_0;
 	t_list	*cpy_1;
-	int	count;
 
 	cpy_0 = g[0];
 	cpy_1 = g[1];
 	count = 0;
-
 	while (!(cpy_1->nb <= cpy_0->nb && cpy_1->nb >= cpy_0->prev->nb)
 		&& !(cpy_0->prev == biggest && cpy_1->nb >= biggest->nb))
 	{
@@ -44,12 +42,32 @@ int		basic_find(t_list **g, t_list *biggest)
 **	do
 */
 
+t_list	**find_other_opt_final(t_list **g, t_list *biggest, int lowest)
+{
+	int		gap_len;
+	t_list	**curr;
+
+	curr = g;
+	gap_len = 0;
+	while (gap_len < lowest)
+	{
+		curr[1] = curr[1]->prev;
+		gap_len++;
+		if (calc_o_rb(curr, lowest, biggest, gap_len * -1) < lowest)
+		{
+			do_op(g, gap_len * -1, calc_o_rb(curr, lowest, biggest, gap_len));
+			return (g);
+		}
+	}
+	return (g);
+}
+
 t_list	**find_other_opt(t_list **g, t_list *biggest)
 {
-	int	tab[5];
-	int	lowest;
-	t_list	**curr;
+	int		tab[5];
+	int		lowest;
 	int		gap_len;
+	t_list	**curr;
 
 	tab[0] = calc_ra(g, biggest);
 	tab[1] = calc_rra(g, biggest);
@@ -60,23 +78,32 @@ t_list	**find_other_opt(t_list **g, t_list *biggest)
 	{
 		curr[1] = curr[1]->next;
 		gap_len++;
-		if (calc_other_rb(curr, lowest, biggest, gap_len) < lowest)
+		if (calc_o_rb(curr, lowest, biggest, gap_len) < lowest)
 		{
-			do_op(g, gap_len, calc_other_rb(curr, lowest, biggest, gap_len));
+			do_op(g, gap_len, calc_o_rb(curr, lowest, biggest, gap_len));
 			return (g);
 		}
 	}
-	curr = g;
-	gap_len = 0;
-	while (gap_len < lowest)
+	return (find_other_opt_final(g, biggest, lowest));
+}
+
+t_list	**push_back_in_a_opt(t_list **g, t_list *biggest, t_list *start_a)
+{
+	if (g[1]->nb < start_a->nb)
 	{
-		curr[1] = curr[1]->prev;
-		gap_len++;
-		if (calc_other_rb(curr, lowest, biggest, gap_len * -1) < lowest)
-		{
-			do_op(g, gap_len * -1, calc_other_rb(curr, lowest, biggest, gap_len));
-			return (g);
-		}
+		rotate_to_lower(g);
+		push_a(g);
+		ft_printf("pa\n");
+	}
+	else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
+	{
+		reverse_rotate_a(g);
+		ft_printf("rra\n");
+	}
+	else
+	{
+		g = rotate_a(g);
+		ft_printf("ra\n");
 	}
 	return (g);
 }
@@ -102,22 +129,8 @@ t_list	**push_back_in_a(t_list **g)
 			push_a(g);
 			ft_printf("pa\n");
 		}
-		else if (g[1]->nb < start_a->nb)
-		{
-			rotate_to_lower(g);
-			push_a(g);
-			ft_printf("pa\n");
-		}
-		else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
-		{
-			reverse_rotate_a(g);
-			ft_printf("rra\n");
-		}
 		else
-		{
-			g = rotate_a(g);
-			ft_printf("ra\n");
-		}
+			g = push_back_in_a_opt(g, biggest, start_a);
 	}
 	return (g);
 }

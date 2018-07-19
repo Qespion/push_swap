@@ -6,14 +6,14 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 10:42:57 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 13:52:04 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 13:48:07 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
-t_list	*find_lowest(t_list *lst)
+t_list		*find_lowest(t_list *lst)
 {
 	t_list	*adr;
 	t_list	*start;
@@ -41,7 +41,7 @@ t_list	*find_lowest(t_list *lst)
 	return (adr);
 }
 
-t_list	*find_biggest(t_list *lst)
+t_list		*find_biggest(t_list *lst)
 {
 	t_list	*adr;
 	t_list	*start;
@@ -69,7 +69,7 @@ t_list	*find_biggest(t_list *lst)
 	return (adr);
 }
 
-t_list	**move_to_lower(t_list **lst, int r)
+t_list		**move_to_lower(t_list **lst, int r)
 {
 	t_list	*start;
 
@@ -91,7 +91,7 @@ t_list	**move_to_lower(t_list **lst, int r)
 	return (lst);
 }
 
-t_list	**rotate_to_lower(t_list **lst)
+t_list		**rotate_to_lower(t_list **lst)
 {
 	t_list	*lowest;
 	t_list	*find;
@@ -117,7 +117,7 @@ t_list	**rotate_to_lower(t_list **lst)
 	return (lst);
 }
 
-t_list	**allfunctions(t_list **g, int r)
+t_list		**allfunctions(t_list **g, int r)
 {
 	r == 0 ? ft_printf("sa\n") : 0;
 	g = r == 0 ? swap_a(g) : g;

@@ -12,7 +12,6 @@ SRCS_1	=   srcs/checker.c			\
 			srcs/rotate.c			\
 			srcs/push.c				\
 			srcs/reverse_rotate.c	\
-			srcs/printlist.c		\
 			srcs/apply_checker.c	\
 			srcs/checker_a.c
 
@@ -23,7 +22,6 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/push.c				\
 			srcs/reverse_rotate.c	\
 			srcs/check_list.c		\
-			srcs/printlist.c		\
 			srcs/push_in_b.c		\
 			srcs/push_back_in_a.c	\
 			srcs/tools.c			\
@@ -32,7 +30,9 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/divide.c			\
 			srcs/sequence.c			\
 			srcs/swap_both_list.c	\
-			srcs/tools_2.c
+			srcs/tools_2.c			\
+			srcs/push_in_b2.c		\
+			srcs/list_tester.c
 
 LIBFT	=	libft/libft.a
 
