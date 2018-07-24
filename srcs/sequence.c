@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sequence.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 13:16:11 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/24 12:10:19 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	**create_new(t_list **g)
 
 	cpy = g[0];
 	if (!(new_list = (t_list**)malloc(sizeof(t_list*) * 2)))
-		return (0);
+		exit(-1);
 	new_a = ft_lstnew(cpy->nb);
 	new_a = new_a->next;
 	cpy = cpy->next;
@@ -90,7 +90,7 @@ int		calc_nb_partition(t_list **nlist, int len)
 	nb = 1;
 	while (tmp->next != nlist[0])
 	{
-		if (r >= 9)
+		if (r >= 6)
 		{
 			r = 0;
 			nb++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 17:43:51 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/24 12:10:48 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		create_list_malloc(t_list *a)
 
 	r = 0;
 	if (!(global = (t_list**)malloc(sizeof(t_list*) * 2)))
-		return (0);
+		exit(-1);
 	global[0] = a;
 	global[1] = NULL;
 	while (get_next_line(0, &str) == 1)
@@ -65,7 +65,7 @@ void	create_list(t_list *a)
 	start = a;
 	str = NULL;
 	if (!(g = (t_list**)malloc(sizeof(t_list*) * 2)))
-		return ;
+		exit(-1);
 	g[0] = a;
 	g[1] = NULL;
 	while (get_next_line(0, &str) == 1)

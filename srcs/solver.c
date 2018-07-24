@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 17:12:05 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/24 11:47:14 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,18 @@ void	solver(t_list *a, int bogo)
 	t_list	*b;
 
 	if (!(global = (t_list**)malloc(sizeof(t_list*) * 2)))
-		return ;
+		exit(-1);
 	global[0] = a;
 	global[1] = NULL;
 	if (bogo == 0)
 	{
 		if (ft_lst_len(global[0]) > 30)
 		{
-			global = partition_list(global);
-			global = push_in_b(global);
+			while (ft_len_list(global[0]) > 20)
+			{
+				global = partition_list(global);
+				global = push_in_b(global);
+			}
 			global = divide(global);
 			global = swap_both_list(global);
 		}

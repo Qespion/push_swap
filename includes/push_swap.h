@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 14:04:21 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/22 12:18:07 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include <time.h>
 # include <stdlib.h>
-
+# include <stdint.h>
 int		check_doublon(t_list *a);
 void	check_int_max(int ac, char **av);
+void	print_list(t_list **global);
 
 int		partition_left(t_list *lst, int partition);
 t_list	**move_to_lower(t_list **lst, int r);

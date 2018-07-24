@@ -21,7 +21,7 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
-
+# include <stdint.h>
 typedef struct	s_struct
 {
 	char		*str;

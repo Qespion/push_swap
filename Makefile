@@ -32,7 +32,8 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/swap_both_list.c	\
 			srcs/tools_2.c			\
 			srcs/push_in_b2.c		\
-			srcs/list_tester.c
+			srcs/list_tester.c		\
+			srcs/printlist.c
 
 LIBFT	=	libft/libft.a
 

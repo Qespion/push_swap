@@ -41,7 +41,6 @@ void	ft_putcharn(t_printf *p, char c)
 void	ft_putcharnf(t_printf *p, char letter)
 {
 	int		len_width;
-	char	*str;
 	char	spaces;
 
 	spaces = ' ';
@@ -54,7 +53,6 @@ void	ft_putcharnf(t_printf *p, char letter)
 			p->nbout++;
 			ft_putchar(spaces);
 		}
-	str = (char*)p->str;
 	ft_putchar(letter);
 	if (p->negative == 1)
 		while (len_width++ < p->width)

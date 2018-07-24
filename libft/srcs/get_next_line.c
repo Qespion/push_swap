@@ -81,10 +81,10 @@ int		ft_read(t_struct *lst, char **line, const int fd)
 
 int		get_next_line(const int fd, char **line)
 {
-	static t_struct	lst[OPEN_MAX];
+	static t_struct	lst[FOPEN_MAX];
 	int				ruff;
 
-	if (!line || fd < 0 || fd > OPEN_MAX)
+	if (!line || fd < 0 || fd > FOPEN_MAX)
 		return (-1);
 	*line = ft_strnew(BUFF_SIZE);
 	if (ft_strleft(&lst[fd], line) == 1)
