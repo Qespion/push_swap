@@ -6,12 +6,23 @@
 /*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/24 12:10:19 by avo              ###   ########.fr       */
+/*   Updated: 2018/07/24 14:32:56 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
+
+void	quit_err_seq(t_list **g, t_list **new_list)
+{
+	ft_lstdel(g[0]);
+	ft_lstdel(g[1]);
+	free(g);
+	ft_lstdel(new_list[1]);
+	ft_lstdel(new_list[0]);
+	free(new_list);
+	exit(-1);
+}
 
 t_list	**create_new(t_list **g)
 {
@@ -23,6 +34,8 @@ t_list	**create_new(t_list **g)
 	if (!(new_list = (t_list**)malloc(sizeof(t_list*) * 2)))
 		exit(-1);
 	new_a = ft_lstnew(cpy->nb);
+	if (!new_a)
+		quit_err_seq(g, new_list);
 	new_a = new_a->next;
 	cpy = cpy->next;
 	new_list[0] = new_a;

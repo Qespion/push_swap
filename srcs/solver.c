@@ -6,7 +6,7 @@
 /*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/24 11:47:14 by avo              ###   ########.fr       */
+/*   Updated: 2018/07/24 14:23:56 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,19 @@ t_list	**swap_bogo(t_list **global)
 	return (global);
 }
 
+void	quit_err_first(t_list *a)
+{
+	ft_lstdel(a);
+	exit(-1);
+}
+
 void	solver(t_list *a, int bogo)
 {
 	t_list	**global;
 	t_list	*b;
 
 	if (!(global = (t_list**)malloc(sizeof(t_list*) * 2)))
-		exit(-1);
+		quit_err_first(a);
 	global[0] = a;
 	global[1] = NULL;
 	if (bogo == 0)

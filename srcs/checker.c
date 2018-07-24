@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avo <avo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 16:42:43 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/24 14:25:20 by avo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ t_list	*create_a_from_str(char *str)
 		if (*str == ' ' && str[1] != '\0')
 		{
 			if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
+			{
+				ft_lstdel(a);
 				exit(-1);
+			}
 			str++;
 		}
 	}
@@ -51,7 +54,10 @@ t_list	*creat_a(int ac, char **av)
 	while (r < ac)
 	{
 		if (!(a = ft_lstaddone(ft_atoi(av[r]), start, a)))
+		{
+			ft_lstdel(a);
 			exit(-1);
+		}
 		r++;
 	}
 	return (start);
