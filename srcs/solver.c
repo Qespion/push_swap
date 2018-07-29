@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 15:19:29 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/28 15:52:14 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,13 @@ void	solver(t_list *a, int bogo)
 	{
 		if (ft_lst_len(global[0]) > 30)
 		{
-			global = partition_list(global);
-			global = push_in_b(global);
-			global = divide(global);
+			while (ft_len_list(global[0]) > 28)
+			{
+				global = partition_list(global);
+				global = push_in_b(global);
+			}
+			// global = divide(global);
+			// global = swap_basic(global);
 			global = swap_both_list(global);
 		}
 		else
@@ -130,6 +134,7 @@ void	solver(t_list *a, int bogo)
 	else
 		global = swap_bogo(global);
 	global = rotate_to_lower(global);
+	// print_list(global);
 	ft_lstdel(global[0]);
 	free(global);
 }

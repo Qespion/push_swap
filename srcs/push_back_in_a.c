@@ -6,118 +6,256 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:21:00 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/14 15:42:06 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/29 12:49:29 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
-
-int		basic_find(t_list **g, t_list *biggest)
+int		get_op_base(t_list **g)
 {
-	t_list	*cpy_0;
-	t_list	*cpy_1;
-	int	count;
+	int		ra;
+	int		rra;
+	t_list	*tmp_a;
 
-	cpy_0 = g[0];
-	cpy_1 = g[1];
-	count = 0;
-
-	while (!(cpy_1->nb <= cpy_0->nb && cpy_1->nb >= cpy_0->prev->nb)
-		&& !(cpy_0->prev == biggest && cpy_1->nb >= biggest->nb))
+	ra = 0;
+	rra = 0;
+	tmp_a = g[0];
+	while (g[1]->nb > tmp_a->nb || g[1]->nb < tmp_a->prev->nb)
 	{
-		count++;
-		cpy_0 = cpy_0->next;
+		if ((g[1]->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+			|| (g[1]->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+			break ;
+		ra++;
+		tmp_a = tmp_a->next;
 	}
-	return (count);
+	tmp_a = g[0];
+	while (g[1]->nb > tmp_a->nb || g[1]->nb < tmp_a->prev->nb)
+	{
+		if ((g[1]->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+			|| (g[1]->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+			break ;
+		rra++;
+		tmp_a = tmp_a->prev;
+	}
+	return (ra <= rra ? ra : rra);
 }
 
-/*
-**	Faire un tab qui va stock le nb d'action du plus simple au plus complexe
-**	-with ra/rra
-**	-with rb/rrb
-**	-with a rb find is place with ra /rra
-** 	-with a ra blahblaj blha with rb /rrb
-**	*most fun* With rrr or rr and some ra/rb/rrb/rra *most FUN*
-**	find lowest
-**	do
-*/
-
-t_list	**find_other_opt(t_list **g, t_list *biggest)
+t_list	**set_b(t_list **g, int lowest)
 {
-	int	tab[5];
-	int	lowest;
-	t_list	**curr;
-	int		gap_len;
+	t_list	*tmp;
 
-	tab[0] = calc_ra(g, biggest);
-	tab[1] = calc_rra(g, biggest);
-	lowest = tab[1] < tab[0] ? tab[1] : tab[0];
-	gap_len = 0;
-	curr = g;
-	while (gap_len < lowest)
+	g[1]->p = lowest;
+	tmp = g[1]->next;
+	while (tmp != g[1])
 	{
-		curr[1] = curr[1]->next;
-		gap_len++;
-		if (calc_other_rb(curr, lowest, biggest, gap_len) < lowest)
-		{
-			do_op(g, gap_len, calc_other_rb(curr, lowest, biggest, gap_len));
-			return (g);
-		}
-	}
-	curr = g;
-	gap_len = 0;
-	while (gap_len < lowest)
-	{
-		curr[1] = curr[1]->prev;
-		gap_len++;
-		if (calc_other_rb(curr, lowest, biggest, gap_len * -1) < lowest)
-		{
-			do_op(g, gap_len * -1, calc_other_rb(curr, lowest, biggest, gap_len));
-			return (g);
-		}
+		tmp->p = lowest + 1;
+		tmp = tmp->next;
 	}
 	return (g);
 }
 
-t_list	**push_back_in_a(t_list **g)
+t_list	*get_rev_tmp_b(t_list **g, int r)
 {
-	t_list	*start_a;
-	t_list	*current_a;
-	t_list	*biggest;
+	int		i;
+	t_list	*tmp_b;
 
-	current_a = g[0];
-	while (g[1] != NULL)
+	i = 1;
+	tmp_b = g[1];
+	while (i < r)
 	{
-		start_a = find_lowest(g[0]);
-		biggest = find_biggest(g[0]);
-		if (g[1]->nb <= g[0]->nb && g[1]->nb >= g[0]->prev->nb)
+		tmp_b = tmp_b->prev;
+		i++;
+	}
+	return (tmp_b);
+}
+
+t_list	*get_tmp_b(t_list **g, int r)
+{
+	int		i;
+	t_list	*tmp_b;
+
+	i = 1;
+	tmp_b = g[1];
+	while (i < r)
+	{
+		tmp_b = tmp_b->next;
+		i++;
+	}
+	return (tmp_b);
+}
+
+int		better_ra_rra(t_list **g, t_list *tmp_b)
+{
+	int		ra;
+	int		rra;
+	t_list	*tmp_a;
+
+	ra = 0;
+	rra = 0;
+	tmp_a = g[0];
+	while (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb)
+	{
+		if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+			|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+			break ;
+		ra++;
+		tmp_a = tmp_a->next;
+	}
+	tmp_a = g[0];
+	while (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb)
+	{
+		if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+			|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+			break ;
+		rra++;
+		tmp_a = tmp_a->prev;
+	}
+	return (ra <= rra ? 1 : 0);
+}
+
+t_list	**p_in_ra(t_list **g, int r)
+{
+	int		total;
+	t_list	*tmp_b;
+	t_list	*tmp_a;
+	t_list	*mov_b;
+
+	total = 0;
+	mov_b = g[1];
+	tmp_a = g[0];
+	tmp_b = get_tmp_b(g, r);
+	if (better_ra_rra(g, tmp_b))
+	{
+		while (mov_b != tmp_b && (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb))
 		{
-			push_a(g);
-			ft_printf("pa\n");
+			if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+				|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+				break ;
+			tmp_a = tmp_a->next;
+			mov_b = mov_b->next;
+			total++;
 		}
-		else if (g[0]->prev == biggest && g[1]->nb >= biggest->nb)
+		while (mov_b != tmp_b)
 		{
-			push_a(g);
-			ft_printf("pa\n");
+			mov_b = mov_b->next;
+			total++;
 		}
-		else if (g[1]->nb < start_a->nb)
+		while (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb)
 		{
-			rotate_to_lower(g);
-			push_a(g);
-			ft_printf("pa\n");
-		}
-		else if (better_in_reverse_ra(g, basic_find(g, biggest), biggest))
-		{
-			reverse_rotate_a(g);
-			ft_printf("rra\n");
-		}
-		else
-		{
-			g = rotate_a(g);
-			ft_printf("ra\n");
+			if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+				|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+				break ;
+			tmp_a = tmp_a->next;
+			total++;
 		}
 	}
+	else
+	{
+		while (mov_b != tmp_b)
+		{
+			mov_b = mov_b->next;
+			total++;
+		}
+		while (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb)
+		{
+			if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+				|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+				break ;
+			tmp_a = tmp_a->prev;
+			total++;
+		}
+	}
+	tmp_b->p = total;
+	return (g);
+}
+
+t_list	**p_in_rra(t_list **g, int r)
+{
+	int		total;
+	t_list	*tmp_b;
+	t_list	*tmp_a;
+	t_list	*mov_b;
+
+	total = 0;
+	mov_b = g[1];
+	tmp_a = g[0];
+	tmp_b = get_rev_tmp_b(g, r);
+	if (better_ra_rra(g, tmp_b))
+	{
+		while (mov_b != tmp_b)
+		{
+			mov_b = mov_b->prev;
+			total++;
+		}
+		while (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb)
+		{
+			if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+				|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+				break ;
+			tmp_a = tmp_a->next;
+			total++;
+		}
+	}
+	else
+	{
+		while (mov_b != tmp_b && (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb))
+		{
+			if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+				|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+				break ;
+			tmp_a = tmp_a->prev;
+			mov_b = mov_b->prev;
+			total++;
+		}
+		while (mov_b != tmp_b)
+		{
+			mov_b = mov_b->prev;
+			total++;
+		}
+		while (tmp_b->nb > tmp_a->nb || tmp_b->nb < tmp_a->prev->nb)
+		{
+			if ((tmp_b->nb > find_biggest(g[0])->nb && tmp_a == find_biggest(g[0]))
+				|| (tmp_b->nb < find_lowest(g[0])->nb && tmp_a == find_lowest(g[0])))
+				break ;
+			tmp_a = tmp_a->prev;
+			total++;
+		}
+	}
+	mov_b->p = total;
+	return (g);
+}
+
+t_list	**iterate_elem_b(t_list **g)
+{
+	int		lwest_op;
+	int		r;
+
+	r = 1;
+	lwest_op = get_op_base(g);
+	g = set_b(g, lwest_op);
+	while (r < lwest_op)
+	{
+		g = p_in_ra(g, r);
+		r++;
+	}
+	r = 1;
+	while (r < lwest_op + 1)
+	{
+		g = p_in_rra(g, r);
+		r++;
+	}
+	return (g);
+}
+
+//do the push and git push
+
+t_list	**push_back_in_a(t_list **g)
+{
+	g = iterate_elem_b(g);
+	print_list(g);
+	exit(0);
+	// g = push_lowest_elem(g);
 	return (g);
 }

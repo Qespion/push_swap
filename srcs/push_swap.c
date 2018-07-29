@@ -6,33 +6,12 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 13:44:46 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 17:28:20 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
-
-void	check_int_max(int ac, char **av)
-{
-	int		r;
-	char	**tmp;
-
-	tmp = av;
-	r = 1;
-	if (ac > 1)
-	{
-		while (r < ac)
-		{
-			if (ft_atoi(av[r]) > 2147483647)
-			{
-				ft_printf("Error\n");
-				exit(-1);
-			}
-			r++;
-		}
-	}
-}
 
 int		check_a(int ac, char **av)
 {
@@ -72,63 +51,24 @@ t_list	*create_a(int ac, char **av, int teube)
 	r = 2;
 	if (ac > 1 && teube == 0)
 	{
-		a = ft_lstnew(ft_atoi(av[1]));
+		if (!(a = ft_lstnew(ft_atoi(av[1]))))
+			exit(-1);
 		start = a;
 	}
 	if (teube == 1 && ac > 1)
 	{
-		a = ft_lstnew(ft_atoi(av[r]));
+		if (!(a = ft_lstnew(ft_atoi(av[r]))))
+			exit(-1);
 		start = a;
 		r++;
 	}
 	while (r < ac)
 	{
-		a = ft_lstaddone(ft_atoi(av[r]), start, a);
+		if (!(a = ft_lstaddone(ft_atoi(av[r]), start, a)))
+			exit(-1);
 		r++;
 	}
 	return (start);
-}
-
-void	int_max(char *str)
-{
-	char	*tmp;
-
-	tmp = str;
-	while (*tmp)
-	{
-		if (ft_atoi(tmp) > 2147483647)
-		{
-			ft_printf("Error\n");
-			exit(-1);
-		}
-		tmp++;
-	}
-}
-
-int		checker_str(char *str)
-{
-	int	r;
-
-	r = 0;
-	while (str[r])
-	{
-		if ((str[r] < '0' || str[r] > '9') && str[r] != '-')
-			break ;
-		if (str[r] == '-')
-			r++;
-		while (str[r] >= '0' && str[r] <= '9')
-			r++;
-		if (str[r] == ' ')
-			r++;
-	}
-	if (str[r - 1] >= '0' && str[r - 1] <= '9' && str[r] == '\0')
-	{
-		int_max(str);
-		ft_strdel(&str);
-		return (1);
-	}
-	ft_strdel(&str);
-	return (0);
 }
 
 t_list	*create_a_from_str(char *str)
@@ -136,7 +76,8 @@ t_list	*create_a_from_str(char *str)
 	t_list	*a;
 	t_list	*start;
 
-	a = ft_lstnew(ft_atoi(str));
+	if (!(a = ft_lstnew(ft_atoi(str))))
+		exit(-1);
 	start = a;
 	while (*str)
 	{
@@ -144,34 +85,12 @@ t_list	*create_a_from_str(char *str)
 			str++;
 		if (*str == ' ' && str[1] != '\0')
 		{
-			a = ft_lstaddone(ft_atoi(str), start, a);
+			if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
+				exit(-1);
 			str++;
 		}
 	}
 	return (start);
-}
-
-int		check_doublon(t_list *a)
-{
-	t_list	*start;
-	t_list	*tmp;
-	int		nb;
-
-	tmp = a;
-	start = a;
-	while (start->next != a)
-	{
-		nb = start->nb;
-		tmp = start->next;
-		while (tmp != a)
-		{
-			if (tmp->nb == nb)
-				return (0);
-			tmp = tmp->next;
-		}
-		start = start->next;
-	}
-	return (1);
 }
 
 int		main(int ac, char **av)

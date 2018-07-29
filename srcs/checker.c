@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 12:03:11 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 16:42:43 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_list	*create_a_from_str(char *str)
 	t_list	*a;
 	t_list	*start;
 
-	a = ft_lstnew(ft_atoi(str));
+	if (!(a = ft_lstnew(ft_atoi(str))))
+		exit(-1);
 	start = a;
 	while (*str)
 	{
@@ -26,7 +27,8 @@ t_list	*create_a_from_str(char *str)
 			str++;
 		if (*str == ' ' && str[1] != '\0')
 		{
-			a = ft_lstaddone(ft_atoi(str), start, a);
+			if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
+				exit(-1);
 			str++;
 		}
 	}
@@ -42,12 +44,14 @@ t_list	*creat_a(int ac, char **av)
 	r = 2;
 	if (ac > 1)
 	{
-		a = ft_lstnew(ft_atoi(av[1]));
+		if (!(a = ft_lstnew(ft_atoi(av[1]))))
+			exit(-1);
 		start = a;
 	}
 	while (r < ac)
 	{
-		a = ft_lstaddone(ft_atoi(av[r]), start, a);
+		if (!(a = ft_lstaddone(ft_atoi(av[r]), start, a)))
+			exit(-1);
 		r++;
 	}
 	return (start);

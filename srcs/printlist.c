@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 11:16:16 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/20 16:52:27 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 17:32:55 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	print_list(t_list **global)
 			global[0] = global[0]->next;
 		}
 	}
-	//ft_printf("LIST A start again = %d\n", global[0]->nb);
 	ft_printf("\n----\n\n");
 	if (global[1])
 	{
@@ -47,7 +46,6 @@ void	print_list(t_list **global)
 			ft_printf("list b = %d, %d\n", global[1]->nb, global[1]->p);
 			global[1] = global[1]->next;
 		}
-		//ft_printf("LIST B start again = %d\n", global[1]->nb);
 	}
 	ft_printf("----\n");
 }

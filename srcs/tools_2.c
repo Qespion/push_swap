@@ -6,14 +6,14 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 13:46:16 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 13:53:11 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/19 13:47:17 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
-int		is_sort(t_list *lowest)
+int	is_sort(t_list *lowest)
 {
 	t_list	*curr;
 
@@ -29,7 +29,7 @@ int		is_sort(t_list *lowest)
 	return (1);
 }
 
-int		ra_or_rra(t_list **g, t_list *start_a)
+int	ra_or_rra(t_list **g, t_list *start_a)
 {
 	t_list	*cpy_0;
 	int		rra;
@@ -58,7 +58,7 @@ int		ra_or_rra(t_list **g, t_list *start_a)
 	return (rra < ra ? 0 : 1);
 }
 
-int		ft_lst_len(t_list *lst)
+int	ft_lst_len(t_list *lst)
 {
 	int		total;
 	t_list	*tmp;

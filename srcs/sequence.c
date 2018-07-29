@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:23:37 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 15:17:49 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/28 15:53:07 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_list	**create_new(t_list **g)
 
 t_list	**put_partition_in_list(t_list **nlist, t_list **g)
 {
-	t_list  *tmp;
+	t_list	*tmp;
 
 	tmp = g[0];
 	while (tmp->next != g[0])
@@ -55,10 +55,10 @@ t_list	**put_partition_in_list(t_list **nlist, t_list **g)
 
 t_list	**new_attribut(t_list **nlist, int len, int nb_partition)
 {
-	t_list  *lst;
-	int i;
-	int r;
-	int part_size;
+	int		i;
+	int		r;
+	int		part_size;
+	t_list	*lst;
 
 	part_size = len / nb_partition;
 	lst = nlist[0];
@@ -81,16 +81,16 @@ t_list	**new_attribut(t_list **nlist, int len, int nb_partition)
 
 int		calc_nb_partition(t_list **nlist, int len)
 {
-	int	nb;
-	int	r;
-	t_list  *tmp;
+	int		nb;
+	int		r;
+	t_list	*tmp;
 
 	tmp = nlist[0];
 	r = 0;
 	nb = 1;
 	while (tmp->next != nlist[0])
 	{
-		if (r >= 9)
+		if (r >= 3)
 		{
 			r = 0;
 			nb++;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                      :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 13:18:06 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 10:29:08 by oespion          ###   ########.fr       */
+/*   Created: 2018/07/19 13:50:29 by oespion           #+#    #+#             */
+/*   Updated: 2018/07/19 13:51:53 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-typedef struct  s_struct
+typedef struct	s_struct
 {
-    char        *str;
-}               t_struct;
+	char		*str;
+}				t_struct;
 
 typedef struct	s_printf
 {
@@ -61,31 +61,23 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-int		ft_strcmp(char *s1, char *s2);
-void	ft_putstr_fd(char const *s, int fd);
-char	*ft_strsub(char const *s, unsigned int start, size_t len);
-char	*ft_strnew(size_t size);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_strfjoin(char *s1, char *s2);
-int		get_next_line(const int fd, char **line);
-void	ft_memdel(void **ap);
-char	*ft_itoa(int n);
-char	*ft_strdup(const char *src);
+int				ft_strcmp(char *s1, char *s2);
+void			ft_putstr_fd(char const *s, int fd);
+char			*ft_strsub(char const *s, unsigned int start, size_t len);
+char			*ft_strnew(size_t size);
+void			*ft_memmove(void *dest, const void *src, size_t n);
+char			*ft_strfjoin(char *s1, char *s2);
+int				get_next_line(const int fd, char **line);
+void			ft_memdel(void **ap);
+char			*ft_itoa(int n);
+char			*ft_strdup(const char *src);
 
-/*
-**				LISTES
-*/
-
-int		ft_len_list(t_list *list);
-t_list	**ft_insert_one(t_list **global, int lst_nb, int nb);
-t_list	*ft_lstnew(int nb);
-t_list	*ft_lstaddone(int nb, t_list *start, t_list *current);
-void	ft_lstdelone(t_list *new);
-void	ft_lstdel(t_list *lst);
-
-/*
-**				FT_PRINTF
-*/
+int				ft_len_list(t_list *list);
+t_list			**ft_insert_one(t_list **global, int lst_nb, int nb);
+t_list			*ft_lstnew(int nb);
+t_list			*ft_lstaddone(int nb, t_list *start, t_list *current);
+void			ft_lstdelone(t_list *new);
+void			ft_lstdel(t_list *lst);
 
 int				ft_printf(const char *format, ...);
 char			*ft_convert_base(uintmax_t nb, int base);
