@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/21 17:22:50 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/31 22:45:14 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	create_list(t_list *a)
 		ft_strdel(&str);
 	}
 	list_a_checker(g);
-	print_list(g);
 	ft_lstdel(g[0]);
 	free(g);
 }

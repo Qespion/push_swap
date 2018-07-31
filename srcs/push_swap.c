@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 17:28:20 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/31 23:43:35 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		main(int ac, char **av)
 	{
 		a = create_a(ac, av, teube);
 		r = check_a(ac, av);
+		ft_pustr("str");
 	}
 	r == 1 ? r = check_doublon(a) : 0;
 	r == 0 ? ft_putstr_fd("Error\n", 2) : solver(a, teube);

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 15:25:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/06/05 16:15:41 by oespion          ###   ########.fr       */
+/*   Updated: 2018/07/31 22:42:18 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list	**reverse_rotate_b(t_list **global)
 
 t_list	**reverse_rotate_rr(t_list **global)
 {
-	global = rotate_a(global);
-	global = rotate_b(global);
+	global = reverse_rotate_a(global);
+	global = reverse_rotate_b(global);
 	return (global);
 }
