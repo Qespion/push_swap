@@ -13,8 +13,7 @@ SRCS_1	=   srcs/checker.c			\
 			srcs/push.c				\
 			srcs/reverse_rotate.c	\
 			srcs/apply_checker.c	\
-			srcs/checker_a.c		\
-			srcs/printlist.c
+			srcs/checker_a.c
 
 SRCS_2	=	srcs/push_swap.c		\
 			srcs/solver.c			\
@@ -34,7 +33,10 @@ SRCS_2	=	srcs/push_swap.c		\
 			srcs/tools_2.c			\
 			srcs/push_in_b2.c		\
 			srcs/list_tester.c		\
-			srcs/printlist.c
+			srcs/pba_tools.c		\
+			srcs/pba_find.c			\
+			srcs/pba_try.c			\
+			srcs/pba_ra_rra.c
 
 LIBFT	=	libft/libft.a
 

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/31 23:43:35 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/01 03:23:53 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		check_a(int ac, char **av)
 				i++;
 			while (av[r][i])
 			{
-				if (av[r][i] < '0' || av[r][i] > '9')
+				if ((av[r][i] < '0' || av[r][i] > '9') && av[r][i] != ' ')
 					return (0);
 				i++;
 			}
@@ -40,6 +40,26 @@ int		check_a(int ac, char **av)
 		}
 	}
 	return (1);
+}
+
+t_list	*find_next(char *str, t_list *start, t_list *a)
+{
+	while (*str >= '0' && *str <= '9')
+		str++;
+	if (*str == ' ')
+		str++;
+	while (*str)
+	{
+		if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
+			exit(-1);
+		while (*str >= '0' && *str <= '9')
+			str++;
+		if (*str == ' ')
+			str++;
+		if ((*str < '0' || *str > '9') && *str != ' ' && *str != '\0')
+			return (a);
+	}
+	return (a);
 }
 
 t_list	*create_a(int ac, char **av, int teube)
@@ -51,22 +71,22 @@ t_list	*create_a(int ac, char **av, int teube)
 	r = 2;
 	if (ac > 1 && teube == 0)
 	{
-		if (!(a = ft_lstnew(ft_atoi(av[1]))))
-			exit(-1);
+		(!(a = ft_lstnew(ft_atoi(av[1])))) ? exit(-1) : 0;
 		start = a;
+		a = find_next(av[1], start, a);
 	}
 	if (teube == 1 && ac > 1)
 	{
 		if (!(a = ft_lstnew(ft_atoi(av[r]))))
 			exit(-1);
 		start = a;
-		r++;
+		a = find_next(av[r++], start, a);
 	}
 	while (r < ac)
 	{
 		if (!(a = ft_lstaddone(ft_atoi(av[r]), start, a)))
 			exit(-1);
-		r++;
+		a = find_next(av[r++], start, a);
 	}
 	return (start);
 }
@@ -116,7 +136,6 @@ int		main(int ac, char **av)
 	{
 		a = create_a(ac, av, teube);
 		r = check_a(ac, av);
-		ft_pustr("str");
 	}
 	r == 1 ? r = check_doublon(a) : 0;
 	r == 0 ? ft_putstr_fd("Error\n", 2) : solver(a, teube);

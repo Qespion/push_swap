@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 13:30:44 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/28 15:53:38 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/01 03:26:48 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,43 +46,52 @@ int		swap_ra_rra(t_list **g)
 	return (ra <= rra ? 1 : 0);
 }
 
+t_list	**swap_both_next(t_list **g)
+{
+	if (swap_ra_rra(g))
+	{
+		ft_printf("ra\n");
+		g = rotate_a(g);
+	}
+	else if (!swap_ra_rra(g) && (g[1]->nb > g[1]->prev->nb
+	|| g[1] == find_lowest(g[0])))
+	{
+		ft_printf("rrr\n");
+		g = reverse_rotate_rr(g);
+	}
+	else
+	{
+		ft_printf("rra\n");
+		g = reverse_rotate_a(g);
+	}
+	return (g);
+}
+
 t_list	**swap_both_list(t_list **g)
 {
 	while (!in_order(find_lowest(g[0])))
 	{
 		if (g[0]->nb > g[0]->next->nb && g[1]->nb > g[1]->next->nb
-			&& g[0]->next != find_lowest(g[0]) && g[1]->next != find_lowest(g[1])
-			&& g[0]->next->nb > g[0]->prev->nb)
+		&& g[0]->next != find_lowest(g[0]) && g[1]->next != find_lowest(g[1])
+		&& g[0]->next->nb > g[0]->prev->nb)
 		{
 			ft_printf("ss\n");
 			g = swap_ss(g);
 		}
 		else if (g[0]->nb > g[0]->next->nb && g[0]->next != find_lowest(g[0])
-				&& g[0]->next != find_lowest(g[0]))
+		&& g[0]->next != find_lowest(g[0]))
 		{
 			ft_printf("sa\n");
 			g = swap_a(g);
 		}
-		else if (swap_ra_rra(g) && (g[1]->nb < g[1]->next->nb || g[1]->next == find_lowest(g[1])))
+		else if (swap_ra_rra(g) && (g[1]->nb < g[1]->next->nb
+		|| g[1]->next == find_lowest(g[1])))
 		{
 			ft_printf("rr\n");
 			g = rotate_rr(g);
 		}
-		else if (swap_ra_rra(g))
-		{
-			ft_printf("ra\n");
-			g = rotate_a(g);
-		}
-		else if (!swap_ra_rra(g) && (g[1]->nb > g[1]->prev->nb || g[1] == find_lowest(g[0])))
-		{
-			ft_printf("rrr\n");
-			g = reverse_rotate_rr(g);
-		}
 		else
-		{
-			ft_printf("rra\n");
-			g = reverse_rotate_a(g);
-		}
+			g = swap_both_next(g);
 	}
 	return (g);
 }

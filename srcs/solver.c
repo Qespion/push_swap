@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/28 15:52:14 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/01 03:32:39 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,35 +59,6 @@ t_list	**swap_both(t_list **gb, t_list *start_a, t_list *start_b)
 	return (gb);
 }
 
-/*
-** --Swap basic to test the functions
-**	ONLY USE	-swap a		-rotate a
-*/
-
-t_list	**swap_basic(t_list **global)
-{
-	t_list	*debut_a;
-	int		tri;
-
-	tri = 1;
-	debut_a = global[0];
-	while (tri == 1)
-	{
-		tri = 0;
-		while (global[0]->next != debut_a)
-		{
-			if (global[0]->next->nb < global[0]->nb)
-			{
-				tri = 1;
-				global = swap_a(global);
-			}
-			global = rotate_a(global);
-		}
-		global = rotate_a(global);
-	}
-	return (global);
-}
-
 t_list	**swap_bogo(t_list **global)
 {
 	int		r;
@@ -103,6 +74,13 @@ t_list	**swap_bogo(t_list **global)
 		r = rand() % 10;
 	}
 	return (global);
+}
+
+void	end_solver(t_list **global)
+{
+	global = rotate_to_lower(global);
+	ft_lstdel(global[0]);
+	free(global);
 }
 
 void	solver(t_list *a, int bogo)
@@ -123,8 +101,6 @@ void	solver(t_list *a, int bogo)
 				global = partition_list(global);
 				global = push_in_b(global);
 			}
-			// global = divide(global);
-			// global = swap_basic(global);
 			global = swap_both_list(global);
 		}
 		else
@@ -133,8 +109,5 @@ void	solver(t_list *a, int bogo)
 	}
 	else
 		global = swap_bogo(global);
-	global = rotate_to_lower(global);
-	// print_list(global);
-	ft_lstdel(global[0]);
-	free(global);
+	end_solver(global);
 }

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 16:42:43 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/01 03:17:56 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,26 @@ t_list	*create_a_from_str(char *str)
 	return (start);
 }
 
+t_list	*find_next(char *str, t_list *start, t_list *a)
+{
+	while (*str >= '0' && *str <= '9')
+		str++;
+	if (*str == ' ')
+		str++;
+	while (*str)
+	{
+		if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
+			exit(-1);
+		while (*str >= '0' && *str <= '9')
+			str++;
+		if (*str == ' ')
+			str++;
+		if ((*str < '0' || *str > '9') && *str != ' ' && *str != '\0')
+			return (a);
+	}
+	return (a);
+}
+
 t_list	*creat_a(int ac, char **av)
 {
 	t_list	*a;
@@ -47,11 +67,13 @@ t_list	*creat_a(int ac, char **av)
 		if (!(a = ft_lstnew(ft_atoi(av[1]))))
 			exit(-1);
 		start = a;
+		a = find_next(av[1], start, a);
 	}
 	while (r < ac)
 	{
 		if (!(a = ft_lstaddone(ft_atoi(av[r]), start, a)))
 			exit(-1);
+		a = find_next(av[r], start, a);
 		r++;
 	}
 	return (start);

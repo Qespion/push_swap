@@ -6,17 +6,27 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:44:34 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/31 23:17:57 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/01 01:37:10 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "push_swap.h"
 
+char	*mov_str(char *str)
+{
+	while (*str >= '0' && *str <= '9')
+		str++;
+	if (*str == ' ')
+		str++;
+	return (str);
+}
+
 void	check_int_max(int ac, char **av)
 {
 	int		r;
 	char	**tmp;
+	char	*str;
 
 	tmp = av;
 	r = 1;
@@ -24,12 +34,18 @@ void	check_int_max(int ac, char **av)
 	{
 		while (r < ac)
 		{
-			if (ft_atoi(av[r]) > 2147483647 || ft_atoi(av[r]) < -2147483648)
+			str = av[r++];
+			while (*str)
 			{
-				ft_printf("Error\n");
-				exit(-1);
+				if (ft_atoi(str) > 2147483647 || ft_atoi(str) < -2147483648)
+				{
+					ft_printf("Error\n");
+					exit(-1);
+				}
+				str = mov_str(str);
+				if ((*str < '0' || *str > '9') && *str != ' ' && *str != '\0')
+					return ;
 			}
-			r++;
 		}
 	}
 }
@@ -52,10 +68,8 @@ int		check_a(int ac, char **av)
 				i++;
 			while (av[r][i])
 			{
-				if ((av[r][i] < '0' || av[r][i] > '9') && av[r][i] != '"')
-				{
+				if ((av[r][i] < '0' || av[r][i] > '9') && av[r][i] != ' ')
 					return (0);
-				}
 				i++;
 			}
 			i = 0;

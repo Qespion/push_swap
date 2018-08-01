@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 17:32:04 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/01 04:19:21 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 
 # include <time.h>
 # include <stdlib.h>
+
+t_list	*find_lowest_elem(t_list **g);
+int		ra_for_g1(t_list **g, t_list *elem);
+t_list	**ra_rb(t_list **g, t_list *elem);
+t_list	**rra_rb(t_list **g, t_list *elem);
+t_list	**rra_rrb(t_list **g, t_list *elem);
+
+int		mov_pbb_tmp(t_list *mov_b, t_list *tmp_b, int total);
+int		pbb_rotate(t_list **g, t_list *tmp_b, t_list *tmp_a, t_list *mov_b);
+int		pbb_rev_rot(t_list **g, t_list *tmp_b, t_list *tmp_a, t_list *mov_b);
+t_list	**p_in_rra(t_list **g, int r);
+t_list	**iterate_elem_b(t_list **g);
+
+int		mov_b_tmp(t_list *mov_b, t_list *tmp_b, int total);
+int		p_rotate(t_list **g, t_list *tmp_b, t_list *tmp_a, t_list *mov_b);
+int		p_rev_rotate(t_list **g, t_list *tmp_b, t_list *tmp_a, t_list *mov_b);
+t_list	**p_in_ra(t_list **g, int r);
+
+int		get_op_base(t_list **g);
+t_list	**set_b(t_list **g, int lowest);
+t_list	*get_rev_tmp_b(t_list **g, int r);
+t_list	*get_tmp_b(t_list **g, int r);
+int		better_ra_rra(t_list **g, t_list *tmp_b);
 
 void	print_list(t_list **global);
 int		check_doublon(t_list *a);
