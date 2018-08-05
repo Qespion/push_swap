@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 13:30:44 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/01 03:26:48 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/05 14:54:00 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,10 @@ t_list	**swap_both_list(t_list **g)
 			g = swap_both_next(g);
 	}
 	return (g);
+}
+
+void	ft_error(t_list *a)
+{
+	ft_lstdel(a);
+	ft_putstr_fd("Error\n", 2);
 }

@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/01 04:19:21 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/05 14:50:17 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		calc_nb_partition(t_list **nlist, int len);
 int		partition_nb(t_list **g);
 int		lower_partition(t_list *lst);
 
+void	ft_error(t_list *a);
 t_list	**partition_list(t_list **g);
 int		middle(t_list *lst);
 int		ft_len_part_list(t_list *list, int	attribut);
