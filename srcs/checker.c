@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/05 14:53:07 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 10:45:08 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_list	*find_next(char *str, t_list *start, t_list *a)
 		str++;
 	while (*str)
 	{
+		if (*str == '-')
+			break ;
 		if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
 			exit(-1);
 		while (*str >= '0' && *str <= '9')
@@ -126,6 +128,8 @@ int		main(int ac, char **av)
 	r == 1 ? r = check_doublon(a) : 0;
 	r == 0 ? ft_putstr_fd("Error\n", 2) : create_list(a);
 	if (a)
+	{
 		ft_lstdel(a);
+	}
 	return (r == 0 ? 1 : 0);
 }

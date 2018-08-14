@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 15:21:13 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/05 14:45:45 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 10:03:30 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_list	**rotate_b(t_list **global)
 
 t_list	**rotate_rr(t_list **global)
 {
+	if (global[1] == NULL || global[0] == NULL)
+		return (global);
 	global = rotate_a(global);
 	global = rotate_b(global);
 	return (global);

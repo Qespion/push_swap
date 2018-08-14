@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:16:19 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/01 03:32:39 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 09:40:37 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_list	**swap_bogo(t_list **global)
 void	end_solver(t_list **global)
 {
 	global = rotate_to_lower(global);
-	ft_lstdel(global[0]);
 	free(global);
 }
 

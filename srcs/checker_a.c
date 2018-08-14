@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:44:34 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/01 01:37:10 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/11 12:54:35 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		check_a(int ac, char **av)
 	check_int_max(ac, av);
 	if (ac > 1)
 	{
-		if (av[r][0] == '-' && av[r][1] == 'v' && av[r][2] == '\0')
+		if (av[r][0] == '-' && av[r][1] == 'R' && av[r][2] == '\0')
 			r++;
 		while (r < ac)
 		{

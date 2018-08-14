@@ -41,7 +41,7 @@ class MyFirstGUI:
 
         self.listb = tkinter.Label(master, textvariable=self.vB, wraplengt=1100)
         self.listb.pack()
-        
+
         self.prev_button = tkinter.Button(master, text="Prev", command=self.prev)
         self.prev_button.pack()
 
@@ -65,7 +65,7 @@ class MyFirstGUI:
     def handle(self, action):
         if (action == "pb"):
             if (self.ret1 == ['']):
-                self.ret1.insert(0, self.ret[0])                
+                self.ret1.insert(0, self.ret[0])
                 self.ret1.pop()
             else:
                 self.ret1.insert(0, self.ret[0])
@@ -106,8 +106,8 @@ class MyFirstGUI:
 
     def prev(self):
         print(self.mov[self.i])
-        self.handle(mov[self.i])  
-        if self.i == 0: 
+        self.handle(mov[self.i])
+        if self.i == 0:
             self.i = self.i
         else:
             self.i -= 1
@@ -127,7 +127,7 @@ class MyFirstGUI:
             self.master.after(int(50), self.tri)
         if self.i == len(mov):
             self.ret1 == ['']
-    
+
     def reset(self):
         self.ret = ret.split()
         self.ret1 = ['']

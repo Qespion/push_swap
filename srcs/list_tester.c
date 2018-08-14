@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 13:23:55 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 17:33:00 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/11 15:37:57 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,23 @@ int		checker_str(char *str)
 		ft_strdel(&str);
 		return (1);
 	}
-	ft_strdel(&str);
 	return (0);
+}
+
+char	*mov_str(char *str)
+{
+	while (*str >= '0' && *str <= '9')
+		str++;
+	if (*str == ' ')
+		str++;
+	return (str);
 }
 
 void	check_int_max(int ac, char **av)
 {
 	int		r;
 	char	**tmp;
+	char	*str;
 
 	tmp = av;
 	r = 1;
@@ -89,12 +98,18 @@ void	check_int_max(int ac, char **av)
 	{
 		while (r < ac)
 		{
-			if (ft_atoi(av[r]) > 2147483647 || ft_atoi(av[r]) < -2147483648)
+			str = av[r++];
+			while (*str)
 			{
-				ft_printf("Error\n");
-				exit(-1);
+				if (ft_atoi(str) > 2147483647 || ft_atoi(str) < -2147483648)
+				{
+					ft_printf("Error\n");
+					exit(-1);
+				}
+				str = mov_str(str);
+				if ((*str < '0' || *str > '9') && *str != ' ' && *str != '\0')
+					return ;
 			}
-			r++;
 		}
 	}
 }
