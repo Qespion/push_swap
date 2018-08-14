@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/14 10:45:08 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 18:08:31 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,6 @@ int		main(int ac, char **av)
 	r == 1 ? r = check_doublon(a) : 0;
 	r == 0 ? ft_putstr_fd("Error\n", 2) : create_list(a);
 	if (a)
-	{
 		ft_lstdel(a);
-	}
 	return (r == 0 ? 1 : 0);
 }

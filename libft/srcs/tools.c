@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 13:54:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/19 13:50:06 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 18:27:22 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_printf	*create_struct(void)
 	t_printf	*p;
 
 	if (!(p = (t_printf*)malloc(sizeof(t_printf))))
-		return (0);
+		exit (-1);
 	p->brett = 0;
 	p->nbout = 0;
 	p->precision = -1;

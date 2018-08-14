@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 13:30:44 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/05 14:54:00 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 17:24:31 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ void	ft_error(t_list *a)
 {
 	ft_lstdel(a);
 	ft_putstr_fd("Error\n", 2);
+	exit(-1);
 }

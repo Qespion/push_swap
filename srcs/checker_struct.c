@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:45 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/14 10:52:22 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/14 17:57:21 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	list_a_checker(t_list **g)
 	start = g[0];
 	if (g[1] != NULL)
 	{
+		ft_lstdel(g[1]);
+		ft_lstdel(g[0]);
+		free(g);
 		ft_printf("KO\n");
-		return ;
+		exit(-1);
 	}
 	while (g[0]->next != start)
 	{
