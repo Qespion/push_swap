@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 13:23:55 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/14 17:22:09 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/16 16:49:50 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int		checker_str(char *str)
 	if (str[r - 1] >= '0' && str[r - 1] <= '9' && str[r] == '\0')
 	{
 		int_max(str);
-		ft_strdel(&str);
 		return (1);
 	}
 	return (0);

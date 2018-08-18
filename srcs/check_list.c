@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 18:05:53 by oespion           #+#    #+#             */
-/*   Updated: 2018/07/15 15:22:43 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/16 14:13:02 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ int	check_both_list(t_list **gb)
 			r = 1;
 	}
 	return (r);
+}
+
+int	end_main(int r, int teube, t_list *a)
+{
+	r == 1 ? r = check_doublon(a) : 0;
+	r == 0 ? ft_error(a) : solver(a, teube);
+	ft_lstdel(a);
+	return (r == 0 ? 1 : 0);
 }

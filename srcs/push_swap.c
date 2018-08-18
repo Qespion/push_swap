@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:40:59 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/14 18:09:47 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/16 17:46:49 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int		check_a(int ac, char **av)
 				i++;
 			while (av[r][i])
 			{
-				if ((av[r][i] < '0' || av[r][i] > '9') && av[r][i] != ' ')
+				if ((av[r][i] < '0' || av[r][i] > '9') && av[r][i] != ' '
+					&& av[r][i] != '-')
 					return (0);
 				i++;
 			}
@@ -44,21 +45,20 @@ int		check_a(int ac, char **av)
 
 t_list	*find_next(char *str, t_list *start, t_list *a)
 {
-	while (*str >= '0' && *str <= '9')
+	while ((*str >= '0' && *str <= '9') || *str == '-')
 		str++;
 	if (*str == ' ')
 		str++;
 	while (*str)
 	{
-		if (*str == '-')
-			break ;
+		if (*str )
 		if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
 			exit(-1);
-		while (*str >= '0' && *str <= '9')
+		while ((*str >= '0' && *str <= '9') || *str == '-')
 			str++;
 		if (*str == ' ')
 			str++;
-		if ((*str < '0' || *str > '9') && *str != ' ' && *str != '\0')
+		if ((*str < '0' || *str > '9') && *str != ' ' && *str != '-' && *str != '\0')
 			return (a);
 	}
 	return (a);
@@ -133,14 +133,12 @@ int		main(int ac, char **av)
 	{
 		a = create_a_from_str(str);
 		r = checker_str(str);
+		ft_strdel(&str);
 	}
 	else
 	{
 		a = create_a(ac, av, teube);
 		r = check_a(ac, av);
 	}
-	r == 1 ? r = check_doublon(a) : 0;
-	r == 0 ? ft_error(a) : solver(a, teube);
-	ft_lstdel(a);
-	return (r == 0 ? 1 : 0);
+	return (end_main(r, teube, a));
 }

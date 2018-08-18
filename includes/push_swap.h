@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:14:27 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/05 14:50:17 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/16 16:18:57 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <time.h>
 # include <stdlib.h>
 
+void	print_list(t_list **global);
+void	print_a(t_list *a);
+
+int		end_main(int r, int teube, t_list *a);
 t_list	*find_lowest_elem(t_list **g);
 int		ra_for_g1(t_list **g, t_list *elem);
 t_list	**ra_rb(t_list **g, t_list *elem);
@@ -39,7 +43,6 @@ t_list	*get_rev_tmp_b(t_list **g, int r);
 t_list	*get_tmp_b(t_list **g, int r);
 int		better_ra_rra(t_list **g, t_list *tmp_b);
 
-void	print_list(t_list **global);
 int		check_doublon(t_list *a);
 void	check_int_max(int ac, char **av);
 
@@ -92,7 +95,6 @@ int		is_sort(t_list *lowest);
 t_list	**allfunctions(t_list **g, int r);
 
 void	ft_start_visu(t_list *a);
-void	print_a(t_list *a);
 int		create_list_malloc(t_list *a);
 void	create_list(t_list *a);
 t_list	**apply_checker(t_list **g, char *str);

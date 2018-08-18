@@ -6,7 +6,7 @@
 /*   By: oespion <oespion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:49:40 by oespion           #+#    #+#             */
-/*   Updated: 2018/08/14 18:08:31 by oespion          ###   ########.fr       */
+/*   Updated: 2018/08/16 17:21:27 by oespion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_list	*create_a_from_str(char *str)
 
 t_list	*find_next(char *str, t_list *start, t_list *a)
 {
-	while (*str >= '0' && *str <= '9')
+	while ((*str >= '0' && *str <= '9') || *str == '-')
 		str++;
 	if (*str == ' ')
 		str++;
@@ -47,11 +47,11 @@ t_list	*find_next(char *str, t_list *start, t_list *a)
 			break ;
 		if (!(a = ft_lstaddone(ft_atoi(str), start, a)))
 			exit(-1);
-		while (*str >= '0' && *str <= '9')
+		while ((*str >= '0' && *str <= '9') || *str == '-')
 			str++;
 		if (*str == ' ')
 			str++;
-		if ((*str < '0' || *str > '9') && *str != ' ' && *str != '\0')
+		if ((*str < '0' || *str > '9') && *str != ' ' && *str != '-' && *str != '\0')
 			return (a);
 	}
 	return (a);
